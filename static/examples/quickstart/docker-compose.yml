@@ -1,0 +1,131 @@
+x-function: &tenzu-back
+    image: ghcr.io/biru-scop/tenzu-back:v0-0-1-demo-11-early
+    env_file:
+      -  .env
+    volumes:
+      - tenzu-static:/public/static
+      - tenzu-media:/public/media
+services:
+  tenzu-back:
+    <<: *tenzu-back
+    networks:
+      - tenzu
+    depends_on:
+      tenzu-worker:
+        condition: service_started
+      caddy:
+        condition: service_started
+      tenzu-db:
+        condition: service_healthy
+      tenzu-redis:
+        condition: service_healthy
+      migrate-job:
+        condition: service_completed_successfully
+    command: ["./manage.py", "runserver", "0.0.0.0:8000"]
+
+  tenzu-worker:
+    <<: *tenzu-back
+    command: "python manage.py procrastinate worker"
+    networks:
+      - tenzu
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+      migrate-job:
+        condition: service_completed_successfully
+
+  tenzu-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: "tenzu"
+      POSTGRES_USER: "tenzu"
+      POSTGRES_PASSWORD: "tenzu"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tenzu"]
+      interval: 2s
+      timeout: 15s
+      retries: 5
+    ports:
+      - 5432:5432
+
+    volumes:
+      - tenzu-db-data:/var/lib/postgresql/data
+    networks:
+      - tenzu
+
+  tenzu-redis:
+    image: redis:7
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 15s
+      retries: 5
+    networks:
+      - tenzu
+
+  caddy:
+    image: caddy:2.9.1-alpine
+#    env_file:
+#      - ../../caddy/caddy.env
+    ports:
+      - "8000:8000"
+      - "443:443"
+    #      - "8383:8383"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/.caddy/config/:/config/
+      - ./caddy/.caddy/data/:/data/
+      - tenzu-static:/public/static
+      - tenzu-media:/public/media
+    networks:
+      - tenzu
+
+
+  tenzu-front:
+    image: ghcr.io/biru-scop/tenzu-front:v0-1-0-demo-13-early
+    volumes:
+      - ./config-front.json:/usr/share/caddy/assets/configs/config.json
+    networks:
+      - tenzu
+
+  migrate-job:
+    <<: *tenzu-back
+    command: "python manage.py migrate"
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+    networks:
+      - tenzu
+
+  load-init-fixtures:
+    <<: *tenzu-back
+    command: "python manage.py loaddata initial_user initial_project_templates && python ./__main__.py i18n compile-catalog"
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+      migrate-job:
+        condition: service_completed_successfully
+    profiles:
+      - install
+    networks:
+      - tenzu
+  load-demo-data:
+    <<: *tenzu-back
+    command: "python manage.py load_sampledata"
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+      migrate-job:
+        condition: service_completed_successfully
+    profiles:
+       - demo
+    networks:
+      - tenzu
+
+volumes:
+  tenzu-db-data:
+  tenzu-media:
+  tenzu-static:
+
+networks:
+  tenzu:

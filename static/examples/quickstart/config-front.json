@@ -1,0 +1,7 @@
+{
+  "api": {
+    "baseDomain": "localhost:8000",
+    "scheme": "http"
+  },
+  "wsUrl": "ws://localhost:8000/events/"
+}
