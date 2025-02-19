@@ -46,7 +46,11 @@ const config: Config = {
       } satisfies Preset.Options,
     ],      
   ],
+  markdown: {
+    mermaid: true,
+  },
   themes: [
+    '@docusaurus/theme-mermaid',
     'docusaurus-theme-github-codeblock'
   ],
   themeConfig: {
