@@ -46,6 +46,9 @@ const config: Config = {
       } satisfies Preset.Options,
     ],      
   ],
+  stylesheets: [
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
+  ],
   markdown: {
     mermaid: true,
   },
