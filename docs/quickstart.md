@@ -1,26 +1,20 @@
 ---
-sidebar_position: 0
+sidebar_position: 1
 sidebar_label: Quickstart
-slug: /
 ---
 
 
 # Quickstart
 
-Get started with Tenzu quickly using either a Helm chart or Docker Compose.
+This guide provides an easy Docker Compose setup to help you try Tenzu locally in under two minutes.
 
-This guide provides an easy Docker Compose setup to help you try Tenzu in under two minutes.
+## Prerequisite
 
-## Requirements
-
-Make sure you have the following installed:
-
-- **Docker**
-- **Docker Compose**
+Make sure you have **[Docker Desktop](https://www.docker.com/get-started/)** installed (yes, even for Linux).
 
 ## Setup Environment
 
-Download and extract the Quickstart package:
+[Download](https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/static/examples/quickstart.tgz) and extract the Quickstart package:
 
 ```bash
 # Download the Quickstart package
@@ -32,17 +26,20 @@ tar -xvzf quickstart.tgz
 
 ## Start Tenzu
 
-Run the Tenzu application on `localhost:8000`:
+Run the Tenzu application locally:
 
 ```bash
 cd quickstart
 
-# Fresh install
-docker compose --profile install up -d --wait
+# Install with minimal data
+docker compose --profile install up --wait
 
 # Install with sample data (demo mode)
-# Note: Wait until the demo fixture loading is complete before accessing the app.
-docker compose --profile install --profile demo up -d --wait
+# Note: Wait until the demo fixture has finished loading before accessing the app.
+docker compose --profile install --profile demo up --wait
+
+# Run again after first installation
+docker compose up
 ```
 
 ### Access Tenzu
@@ -51,13 +48,14 @@ Once running, open [localhost:8000](http://localhost:8000/) in your browser.
 
 ## User Accounts
 
-### Default Admin User
+### Default admin user
 - **Username:** `admin`
 - **Password:** `123123`
 
-### Demo Accounts (if using sample data)
-- **Usernames:** `1user` to `1003user`
+### Demo users accounts
+These account are only available if you have used the provided sample data.
+- **Usernames:** from `1user` to `1003user`
 - **Password:** `123123`
 
-Enjoy exploring Tenzu!
+**Enjoy exploring Tenzu!**
 

@@ -68,18 +68,14 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Documentation',
+          to: '..',
+          label: 'Website',
         },
         {
           href: 'https://github.com/BIRU-Scop',
           label: 'GitHub',
-        },
-        {
-          href: 'https://tenzu.net/en/',
-          label: 'Website',
+          external: true,
+          position: 'right',
         },
         // {
         //   type: 'localeDropdown',
@@ -102,7 +98,7 @@ const config: Config = {
           items: [
             {
               label: 'Quickstart',
-              to: '/',
+              to: '/quickstart/',
             },
             {
               label: 'Docker',
@@ -119,7 +115,7 @@ const config: Config = {
           items: [
             {
               label: 'Website',
-              href: 'https://tenzu.net/en/',
+              to: '..',
             },
             {
               label: 'Community',
@@ -136,7 +132,7 @@ const config: Config = {
             },
             {
               label: 'Biru',
-              href: 'https://biru.sh/en/',
+              href: 'https://biru.sh/',
             },
           ],
         },

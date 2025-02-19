@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 slug: /troubleshooting
 ---
 
@@ -13,12 +13,12 @@ The frontend configuration is validated at the start of the app by the [zod](htt
 
 If the configuration is incorrect due to an improperly set JSON schema, the app will crash.
 
-To see the error details, open your browser's console; the error should be displayed there.
+To see the error details, open your browser's console; the error will be displayed there.
 
 
 ## Specific
 
-You have some specifics troubleshooting to the method of installation :
+See dedicated section for issues that are dependant on the method of installation:
 
 1. **[docker-compose](docker/docker-compose.md#troubleshooting)**
 2. **[argocd](helm-chart/argocd.md#troubleshooting)**
