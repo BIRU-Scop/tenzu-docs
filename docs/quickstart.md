@@ -20,9 +20,10 @@ Make sure you have the following installed:
 
 Download and extract the Quickstart package:
 
-You can downlaod the zipped example [here](../static/examples/quickstart.tgz).
-
 ```bash
+# Download the Quickstart package
+curl -L -o quickstart.tgz https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/static/examples/quickstart.tgz
+
 # Extract the downloaded file
 tar -xvzf quickstart.tgz
 ```
