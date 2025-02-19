@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.7](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.6...v0.0.7) (2025-02-19)
+
+
+### Bug Fixes
+
+* quickstart typo + add github content for download ([41240fc](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/41240fc8f4dbb9dc80554b4b7ebf3533d872fdc5))
+
 ## [0.0.6](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.5...v0.0.6) (2025-02-19)
 
 ## [0.0.5](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.4...v0.0.5) (2025-02-18)
