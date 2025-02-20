@@ -1,6 +1,6 @@
 {
   "label": "Docker",
-  "position": 3,
+  "position": 4,
   "link": {
     "description": "Docker configuration and compose usage",
     "type": "generated-index"

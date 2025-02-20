@@ -6,6 +6,7 @@ sidebar_position: 2
 
 Examples and usage of Docker Compose.
 
+
 ## Services Overview
 
 Here's an overview of the services used in the quickstart docker-compose:
@@ -20,6 +21,8 @@ Some jobs useful for using the app:
 - **migrate-job**: Performs the migration at the start of the app.
 - **load-init-fixture**: Installs all the fixtures for a first install.
 - **load-demo-data**: Loads sample data to test the app.
+
+You can change the version of Tenzu by editing the values for `BACKEND_IMAGE_TAG` and `FRONTEND_IMAGE_TAG` in the compose env file (`.env`).
 
 ## Configure with HTTPS
 

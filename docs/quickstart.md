@@ -14,11 +14,11 @@ Make sure you have **[Docker Desktop](https://www.docker.com/get-started/)** ins
 
 ## Setup Environment
 
-[Download](https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/static/examples/quickstart.tgz) and extract the Quickstart package:
+[Download](https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/examples/quickstart.tgz) and extract the Quickstart package:
 
 ```bash
 # Download the Quickstart package
-curl -L -o quickstart.tgz https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/static/examples/quickstart.tgz
+curl -L -o quickstart.tgz https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/examples/quickstart.tgz
 
 # Extract the downloaded file
 tar -xvzf quickstart.tgz
@@ -32,11 +32,11 @@ Run the Tenzu application locally:
 cd quickstart
 
 # Install with minimal data
-docker compose --profile install up --wait
+docker compose --profile install up
 
 # Install with sample data (demo mode)
 # Note: Wait until the demo fixture has finished loading before accessing the app.
-docker compose --profile install --profile demo up --wait
+docker compose --profile install --profile demo up
 
 # Run again after first installation
 docker compose up
@@ -46,13 +46,13 @@ docker compose up
 
 Once running, open [localhost:8000](http://localhost:8000/) in your browser.
 
-## User Accounts
+### User Accounts
 
-### Default admin user
+#### Default admin user
 - **Username:** `admin`
 - **Password:** `123123`
 
-### Demo users accounts
+#### Demo users accounts
 These account are only available if you have used the provided sample data.
 - **Usernames:** from `1user` to `1003user`
 - **Password:** `123123`

@@ -57,8 +57,6 @@ const config: Config = {
     'docusaurus-theme-github-codeblock'
   ],
   themeConfig: {
-
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'Tenzu documentation',
@@ -147,6 +145,7 @@ const config: Config = {
     prism: {
       darkTheme: prismThemes.dracula,
       theme: prismThemes.github,
+      additionalLanguages: ['bash'],
     },
   } satisfies Preset.ThemeConfig,
 };
