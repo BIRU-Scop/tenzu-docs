@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.7...v0.0.8) (2025-02-20)
+
+
+### Bug Fixes
+
+* recompress example quickstart ([4dba16a](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/4dba16acd79ad87d348a7b5e4d0e3f88061c7b78))
+
 ## [0.0.7](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.6...v0.0.7) (2025-02-19)
 
 
