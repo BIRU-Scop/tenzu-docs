@@ -24,6 +24,11 @@ Some jobs useful for using the app:
 
 You can change the version of Tenzu by editing the values for `BACKEND_IMAGE_TAG` and `FRONTEND_IMAGE_TAG` in the compose env file (`.env`).
 
+If you upgrade the image tag of the backend, you'll need to run the update profile of the docker compose
+```bash
+docker compose --profile update up
+```
+
 ## Configure with HTTPS
 
 You can configure the app to accept HTTPS in different ways.

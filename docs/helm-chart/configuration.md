@@ -80,8 +80,8 @@ https://github.com/BIRU-Scop/helm-charts/blob/main/charts/tenzu/values.yaml
 
 You can use these values as an example if you want to deploy Tenzu with the Bitnami databases.
 
-```yaml reference title="tenzu-bitnami-values.yaml"
-https://github.com/BIRU-Scop/helm-charts/blob/main/charts/tenzu/external-example.yaml
+```yaml reference title="db-in-app-example.yaml"
+https://github.com/BIRU-Scop/helm-charts/blob/main/charts/tenzu/db-in-app-example.yaml
 ```
 
 ### Example with External Databases

@@ -19,9 +19,23 @@ services:
         condition: service_healthy
       tenzu-redis:
         condition: service_healthy
-      migrate-job:
-        condition: service_completed_successfully
-    command: ["./manage.py", "runserver", "0.0.0.0:8000"]
+    command:
+      - "gunicorn"
+      - "configurations.asgi:application"
+      - "-k"
+      - "uvicorn.workers.UvicornWorker"
+      - "-w"
+      - "1"
+      - "-t"
+      - "120"
+      - "-b 0.0.0.0:8000"
+      - "--access-logfile"
+      - "-"
+      - "--log-file"
+      - "-"
+      - "--capture-output"
+      - "--log-level"
+      - "warning"
 
   tenzu-worker:
     <<: *tenzu-back
@@ -31,8 +45,6 @@ services:
     depends_on:
       tenzu-db:
         condition: service_healthy
-      migrate-job:
-        condition: service_completed_successfully
 
   tenzu-db:
     image: postgres:15
@@ -86,12 +98,27 @@ services:
 
   migrate-job:
     <<: *tenzu-back
+    profiles:
+      - install
+      - update
+      - demo
     command: "python manage.py migrate"
     depends_on:
       tenzu-db:
         condition: service_healthy
     networks:
       - tenzu
+
+  collectstatic:
+    <<: *tenzu-back
+    profiles:
+      - install
+      - update
+      - demo
+    command: "python manage.py collectstatic --noinput"
+    networks:
+      - tenzu
+
 
   load-init-fixtures:
     <<: *tenzu-back

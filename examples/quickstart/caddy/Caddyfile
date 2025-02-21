@@ -3,10 +3,10 @@
 }
 
 :8000 {
-   @media {
-       path  /media/*
+   @public {
+       path /media/* /static/*
    }
-   route @media {
+   route @public {
          header Access-Control-Allow-Origin *
          header Access-Control-Allow-Headers *
          header Access-Control-Allow-Methods *
@@ -16,7 +16,6 @@
          }
    }
 
-   reverse_proxy /static/* tenzu-back:8000
    reverse_proxy /api/* tenzu-back:8000
    reverse_proxy /admin/* tenzu-back:8000
    reverse_proxy /events/ tenzu-back:8000
