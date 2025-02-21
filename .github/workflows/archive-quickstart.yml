@@ -1,0 +1,32 @@
+#
+name: Create and release archive for quickstart
+
+on: [push]
+
+# Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+# There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@master
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.6
+        with:
+          type: 'tar'
+          filename: 'quickstart.tar.gz'
+          path: example/quickstart
+      - name: Upload Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifacts: 'quickstart.tar.gz'
+          allowUpdates: true
+          tag: "quickstart"
+          replacesArtifacts: true
+

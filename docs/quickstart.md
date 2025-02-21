@@ -18,7 +18,7 @@ Make sure you have **[Docker Desktop](https://www.docker.com/get-started/)** ins
 
 ```bash
 # Download the Quickstart package
-curl -L -o quickstart.tgz https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/examples/quickstart.tgz
+curl -L -o quickstart.tgz https://github.com/BIRU-Scop/tenzu-docs/releases/download/quickstart/quickstart.tgz
 
 # Extract the downloaded file
 tar -xvzf quickstart.tgz
