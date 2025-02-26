@@ -9,6 +9,10 @@ slug: /
 This is the technical documentation for Tenzu. We will provide some recipes to deploy using technology that we support.
 
 This section describes the architecture of Tenzu and its main components. It provides an overview for system administrators to facilitate the deployment and management of the platform.
+:::danger
+Tenzu is not yet ready to be used in production environment.
+We have some more updates incoming before then.
+:::
 
 ## Components
 

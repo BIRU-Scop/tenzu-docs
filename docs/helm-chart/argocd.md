@@ -5,7 +5,10 @@ sidebar_position: 3
 # ArgoCD
 
 Let's see how to install through ArgoCD
-
+:::danger
+Tenzu is not yet ready to be used in production environment.
+We have some more updates incoming before then.
+:::
 ## Install Tenzu as an application
 
 ### Prerequisites 

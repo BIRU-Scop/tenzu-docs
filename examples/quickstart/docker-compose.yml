@@ -49,7 +49,7 @@ services:
       tenzu-db:
         condition: service_healthy
   tenzu-db:
-    image: postgres:15
+    image: postgres:17
     profiles:
       - start
       - install
@@ -70,7 +70,7 @@ services:
       - tenzu
 
   tenzu-redis:
-    image: redis:7
+    image: redis:7.2
     profiles:
       - start
     healthcheck:
@@ -82,15 +82,13 @@ services:
       - tenzu
 
   caddy:
-    image: caddy:2.9.1-alpine
+    image: caddy:2.9
     ports:
-      - "8000:8000" # remove for production
-#      - "443:443" # uncomment for the https
+      - "8000:8000"
     profiles:
       - start
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-#      - ./caddy/Caddyfile:/etc/caddy/CaddyfileDns  # uncomment if you want use the DNS chalenge
       - ./caddy/.caddy/config/:/config/
       - ./caddy/.caddy/data/:/data/
       - tenzu-static:/public/static
@@ -139,8 +137,6 @@ services:
     depends_on:
       tenzu-db:
         condition: service_healthy
-      migrate-job:
-        condition: service_completed_successfully
     profiles:
       - install
     networks:
@@ -151,8 +147,6 @@ services:
     depends_on:
       tenzu-db:
         condition: service_healthy
-      migrate-job:
-        condition: service_completed_successfully
     profiles:
        - demo
     networks:

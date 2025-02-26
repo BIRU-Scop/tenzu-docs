@@ -22,6 +22,9 @@ curl -L -o quickstart.tgz https://github.com/BIRU-Scop/tenzu-docs/releases/downl
 
 # Extract the downloaded file
 tar -xvzf quickstart.tgz
+
+# go into the directory
+cd quickstart
 ```
 
 ## Start Tenzu
@@ -29,14 +32,14 @@ tar -xvzf quickstart.tgz
 Run the Tenzu application locally:
 
 ```bash
-cd quickstart
-
 # Install with minimal data
-docker compose run --remove-orphans migrate-job # apply the database migration
-docker compose run --remove-orphans collectstatic # deploy the assets files
+# apply the database migration
+docker compose run --remove-orphans migrate-job
+# deploy the assets files
+docker compose run --remove-orphans collectstatic
+# load required data
 docker compose run --remove-orphans load-init-fixtures
 
-# kill with th
 # Install with sample data (demo mode)
 # Note: Wait until the demo fixture has finished loading before accessing the app.
 docker compose run --remove-orphans load-demo-data 

@@ -5,7 +5,10 @@ sidebar_position: 2
 # Install
 
 Let's see how to install Tenzu charts.
-
+:::danger
+Tenzu is not yet ready to be used in production environment.
+We have some more updates incoming before then.
+:::
 ## Prerequisites
 
 Prepare the charts you want to use with values adapted to your case.

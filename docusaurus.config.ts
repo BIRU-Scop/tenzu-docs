@@ -59,7 +59,7 @@ const config: Config = {
       title: 'Tenzu documentation',
       logo: {
         alt: 'Tenzu logo',
-        src: 'img/logo-full-tenzu.svg',
+        src: 'img/logo_tenzu.svg',
       },
       items: [
         {
@@ -138,7 +138,7 @@ const config: Config = {
     prism: {
       darkTheme: prismThemes.dracula,
       theme: prismThemes.github,
-      additionalLanguages: ['bash'],
+      additionalLanguages: ['bash', 'docker'],
     },
   } satisfies Preset.ThemeConfig,
 };
