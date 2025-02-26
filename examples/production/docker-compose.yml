@@ -8,10 +8,12 @@ x-function: &tenzu-back
 services:
   tenzu-back:
     <<: *tenzu-back
+    restart: always
     profiles:
       - start
     networks:
       - tenzu
+      - db
     depends_on:
       tenzu-worker:
         condition: service_started
@@ -40,25 +42,26 @@ services:
       - "warning"
   tenzu-worker:
     <<: *tenzu-back
+    restart: always
     profiles:
       - start
     command: "python manage.py procrastinate worker"
     networks:
-      - tenzu
+      - db
     depends_on:
       tenzu-db:
         condition: service_healthy
+
   tenzu-db:
     image: postgres:15
+    restart: always
     profiles:
       - start
       - install
       - update
       - demo
-    environment:
-      POSTGRES_DB: "tenzu"
-      POSTGRES_USER: "tenzu"
-      POSTGRES_PASSWORD: "tenzu"
+    env_file:
+      - db.env
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U tenzu"]
       interval: 2s
@@ -67,10 +70,11 @@ services:
     volumes:
       - tenzu-db-data:/var/lib/postgresql/data
     networks:
-      - tenzu
+      - db
 
   tenzu-redis:
     image: redis:7
+    restart: always
     profiles:
       - start
     healthcheck:
@@ -79,18 +83,18 @@ services:
       timeout: 15s
       retries: 5
     networks:
-      - tenzu
+      - db
 
   caddy:
     image: caddy:2.9.1-alpine
+    restart: always
     ports:
-      - "8000:8000" # remove for production
-#      - "443:443" # uncomment for the https
+      - "80:80"
+      - "443:443"
     profiles:
       - start
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-#      - ./caddy/Caddyfile:/etc/caddy/CaddyfileDns  # uncomment if you want use the DNS chalenge
       - ./caddy/.caddy/config/:/config/
       - ./caddy/.caddy/data/:/data/
       - tenzu-static:/public/static
@@ -102,6 +106,7 @@ services:
 
   tenzu-front:
     image: ghcr.io/biru-scop/tenzu-front:${FRONTEND_IMAGE_TAG}
+    restart: always
     profiles:
       - start
     volumes:
@@ -114,7 +119,6 @@ services:
     profiles:
       - install
       - update
-      - demo
     command: "python manage.py migrate"
     depends_on:
       tenzu-db:
@@ -127,15 +131,14 @@ services:
     profiles:
       - install
       - update
-      - demo
     command: "python manage.py collectstatic --noinput"
     networks:
-      - tenzu
+      - db
 
 
   load-init-fixtures:
     <<: *tenzu-back
-    command: "python manage.py loaddata initial_user initial_project_templates"
+    command: "python manage.py loaddata initial_project_templates"
     depends_on:
       tenzu-db:
         condition: service_healthy
@@ -144,7 +147,8 @@ services:
     profiles:
       - install
     networks:
-      - tenzu
+      - db
+
   load-demo-data:
     <<: *tenzu-back
     command: "python manage.py load_sampledata"
@@ -156,7 +160,18 @@ services:
     profiles:
        - demo
     networks:
-      - tenzu
+      - db
+
+  generate-config:
+    image: ghcr.io/biru-scop/tenzu-back:${BACKEND_IMAGE_TAG}
+    env_file:
+      - initial-configurations/generate.env
+    volumes:
+      - .:/public/
+    profiles:
+       - generate config
+    command: 'bash -c "cd /public/initial-configurations && sh generate.sh"'
+
 
 volumes:
   tenzu-db-data:
@@ -165,3 +180,4 @@ volumes:
 
 networks:
   tenzu:
+  db:

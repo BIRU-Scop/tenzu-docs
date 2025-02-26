@@ -1,0 +1,7 @@
+{
+  "api": {
+    "baseDomain": "$DOMAIN_NAME",
+    "scheme": "https"
+  },
+  "wsUrl": "wss://$DOMAIN_NAME/events/"
+}

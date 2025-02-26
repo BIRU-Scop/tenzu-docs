@@ -14,11 +14,11 @@ Make sure you have **[Docker Desktop](https://www.docker.com/get-started/)** ins
 
 ## Setup Environment
 
-[Download](https://raw.githubusercontent.com/BIRU-Scop/tenzu-docs/refs/heads/main/examples/quickstart.tgz) and extract the Quickstart package:
+[Download](https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/quickstart.tgz) and extract the Quickstart package:
 
 ```bash
 # Download the Quickstart package
-curl -L -o quickstart.tgz https://github.com/BIRU-Scop/tenzu-docs/releases/download/quickstart/quickstart.tgz
+curl -L -o quickstart.tgz https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/quickstart.tgz
 
 # Extract the downloaded file
 tar -xvzf quickstart.tgz
@@ -32,14 +32,17 @@ Run the Tenzu application locally:
 cd quickstart
 
 # Install with minimal data
-docker compose --profile install up
+docker compose run --remove-orphans migrate-job # apply the database migration
+docker compose run --remove-orphans collectstatic # deploy the assets files
+docker compose run --remove-orphans load-init-fixtures
 
+# kill with th
 # Install with sample data (demo mode)
 # Note: Wait until the demo fixture has finished loading before accessing the app.
-docker compose --profile install --profile demo up
+docker compose run --remove-orphans load-demo-data 
 
 # Run again after first installation
-docker compose up
+docker compose --profile start up
 ```
 
 ### Access Tenzu

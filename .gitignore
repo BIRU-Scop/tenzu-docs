@@ -20,3 +20,8 @@ yarn-debug.log*
 yarn-error.log*
 
 .caddy
+examples/production/caddy/caddy.env
+examples/production/config-front.json
+examples/production/tenzu.env
+
+

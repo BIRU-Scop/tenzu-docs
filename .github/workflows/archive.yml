@@ -1,5 +1,5 @@
 #
-name: Create and release archive for quickstart
+name: Create and release deployment archives
 
 on: [push]
 
@@ -16,17 +16,23 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@master
-      - name: Archive Release
+      - name: Archive quickstart Release
         uses: thedoctor0/zip-release@0.7.6
         with:
           type: 'tar'
           filename: 'quickstart.tar.gz'
           path: example/quickstart
+      - name: Archive production Release
+        uses: thedoctor0/zip-release@0.7.6
+        with:
+          type: 'tar'
+          filename: 'production.tar.gz'
+          path: example/production
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
         with:
-          artifacts: 'quickstart.tar.gz'
+          artifacts: 'quickstart.tar.gz,production.tar.gz'
           allowUpdates: true
-          tag: "quickstart"
+          tag: "archive"
           replacesArtifacts: true
 

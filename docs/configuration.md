@@ -75,7 +75,7 @@ the [config file definition](https://github.com/BIRU-Scop/tenzu-back/blob/main/s
 Here's the minimum values that we set for our quickstart example:
 
 import CodeBlock from '@theme/CodeBlock';
-import BackConfigComponentSource from '!!raw-loader!../examples/quickstart/demo.env';
+import BackConfigComponentSource from '!!raw-loader!../examples/quickstart/.env';
 
 <CodeBlock language="bash" title="examples/quickstart/demo.env">{BackConfigComponentSource}</CodeBlock>
 

@@ -40,9 +40,6 @@ const config: Config = {
           routeBasePath: '/',
         },
         blog: false,
-        // theme: {
-        //   customCss: './src/css/custom.css',
-        // },
       } satisfies Preset.Options,
     ],      
   ],
@@ -75,10 +72,6 @@ const config: Config = {
           external: true,
           position: 'right',
         },
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
       ],
     },
     // github codeblock theme configuration
