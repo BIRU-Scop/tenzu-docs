@@ -186,10 +186,9 @@ Some useful jobs to interact with the app:
 
 ## Troubleshooting 
 
-### Volume Mount Issues
+### Permission access error
 
-If you want to change the location of the volumes `tenzu-static` and/or `tenzu-media` used in the Compose file, 
-please note that in the image we set the user to `default-user:default-group` and that only the following paths are owned by this user:
+Please note that in the image we set the user to `default-user:default-group` and that only the following paths are owned by this user:
 - `/tenzu`
 - `/public`
 

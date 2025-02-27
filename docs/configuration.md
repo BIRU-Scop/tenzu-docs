@@ -25,9 +25,7 @@ The backend is fully configurable using environment variables.
 | `TENZU_TOKENS__ACCESS_TOKEN_LIFETIME`                   | Timedelta                                                                                 | Validity of the access token used for authentication                                                                                                                                                             | No       | 5 minutes                                             |
 | `TENZU_TOKENS__REFRESH_TOKEN_LIFETIME`                  | Timedelta                                                                                 | Validity of the refresh token used for authentication                                                                                                                                                            | No       | 4 hours                                               |
 | `TENZU_DEBUG`                                           | Boolean                                                                                   | Whether to activate Django's debug mode, never use it in production                                                                                                                                              | No       | `False`                                               |
-| `TENZU_STATIC_ROOT`                                     | String                                                                                    | Location where the [static files](https://docs.djangoproject.com/en/5.1/howto/static-files/) will be stored                                                                                                      | No       | `<django_app_root_folder>/../public/static`           |
 | `TENZU_STATIC_URL`                                      | String                                                                                    | URL the static files will be served from                                                                                                                                                                         | No       | `/static/`                                            |
-| `TENZU_MEDIA_ROOT`                                      | String                                                                                    | Location where the [media files](https://docs.djangoproject.com/en/5.1/topics/files/) (uploaded by users) will be stored                                                                                         | No       | `<django_app_root_folder>/../public/media`            |
 | `TENZU_MEDIA_URL`                                       | String                                                                                    | URL the media files will be served from                                                                                                                                                                          | No       | `/media/`                                             |
 | `EXTRA_CORS`                                            | Array                                                                                     | Extra URLs to allow CORS requests from                                                                                                                                                                           | No       | `[]`                                                  |
 | `TENZU_SUPPORT_EMAIL`                                   | String                                                                                    | Email to contact support for your instance, that will be included in emails sent to users                                                                                                                        | No       | `support@example.com`                                 |
@@ -64,10 +62,6 @@ The backend is fully configurable using environment variables.
 | `SENTRY_DSN`                                            | String                                                                                    | If you are using [Sentry](https://docs.sentry.io/concepts/key-terms/dsn-explainer/) or [Glitchtip](https://glitchtip.com/documentation/error-tracking) to track error, set this to the DSN value of your project | No       |                                                       |
 | `SENTRY_ENVIRONMENT`                                    | String                                                                                    | If you set `SENTRY_DSN`, define this to choose the [environment](https://docs.sentry.io/platforms/python/configuration/environments/) errors will be tagged under, you can set this to whatever you want         | No       | `production` (Sentry's default)                       |
 
-:::note
-`<django_app_root_folder>` will be `/tenzu` in the docker image that we provide.
-:::
-
 :::tip
 Please note that emails are by default stored in files. It's recommended to set `TENZU_EMAIL__EMAIL_BACKEND` to
 `django.core.mail.backends.smtp.EmailBackend` in order to use a real SMTP server.
@@ -82,6 +76,13 @@ import CodeBlock from '@theme/CodeBlock';
 import BackConfigComponentSource from '!!raw-loader!../examples/quickstart/tenzu.env';
 
 <CodeBlock language="bash" title="examples/quickstart/tenzu.env">{BackConfigComponentSource}</CodeBlock>
+
+### Files location
+Here is the location where public files will be stored:
+- [static files](https://docs.djangoproject.com/en/5.1/howto/static-files/): `<django_app_root_folder>/../public/static`
+- [media files](https://docs.djangoproject.com/en/5.1/topics/files/): (uploaded by users): `<django_app_root_folder>/../public/media`
+
+`<django_app_root_folder>` will be `/tenzu` in the docker image that we provide.
 
 ## Configure Tenzu Frontend
 
