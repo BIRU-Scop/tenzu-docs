@@ -23,13 +23,15 @@ jobs:
         with:
           type: 'tar'
           filename: 'quickstart.tar.gz'
-          path: examples/quickstart
+          directory: examples
+          path: quickstart
       - name: Archive production Release
         uses: thedoctor0/zip-release@0.7.6
         with:
           type: 'tar'
           filename: 'production.tar.gz'
-          path: examples/production
+          directory: examples
+          path: production
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
         with:
