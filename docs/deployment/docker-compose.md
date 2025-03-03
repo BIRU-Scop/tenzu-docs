@@ -1,16 +1,15 @@
 ---
-sidebar_position: 2
-sidebar_label: Docker Compose
+sidebar_position: 3
 ---
 
-# Docker Compose for Production
+# Docker Compose
 
 :::danger
 Tenzu is not yet ready to be used in production environment.
 We have some more updates incoming before then.
 :::
 
-## Introduction 
+## Introduction
 This guide will explain how to install Tenzu in production mode using HTTPS
 for very simple use cases (evaluate, small volumes, *etc*)
 
@@ -18,7 +17,7 @@ for very simple use cases (evaluate, small volumes, *etc*)
 This recipe does not manage:
 - Database high availability and backup
 - Backup of user files
-:::
+  :::
 
 ## Prerequisites
 
@@ -60,7 +59,7 @@ Keep the values in between single quotes if you don't want any problem with shel
 :::
 
 :::tip
-You can use [djcrety](https://djecrety.ir/) to generate the two keys.
+You can use [djecrety](https://djecrety.ir/) to generate a secret key.
 :::
 
 import CodeBlock from '@theme/CodeBlock';
@@ -68,7 +67,7 @@ import GenerateEnv from '!!raw-loader!../../examples/production/initial-configur
 
 <CodeBlock language="bash" title="production/initial-configurations/generate.env">{GenerateEnv}</CodeBlock>
 
-After changing every values, you need to run the following command that will create all 
+After changing every values, you need to run the following command that will create all
 the needed configuration files
 :::danger
 This command replace existing configuration files each time.
@@ -122,7 +121,7 @@ If you want to try out the demo sample data:
 docker compose run --remove-orphans load-demo-data # load some dummy data
 ```
 
-If you want to lock the version of Tenzu, edit the `.env` file and replace "latest" with the image tag 
+If you want to lock the version of Tenzu, edit the `.env` file and replace "latest" with the image tag
 of the version you want to use.
 
 ```bash
@@ -184,7 +183,7 @@ Some useful jobs to interact with the app:
 - **`generate-config`**: **Replace** config files with their initial values using provided environment.
 
 
-## Troubleshooting 
+## Troubleshooting
 
 ### Permission access error
 
@@ -193,6 +192,7 @@ Please note that in the image we set the user to `default-user:default-group` an
 - `/public`
 
 If you get permission error about some path, this can be the root cause.
+
 <details>
   <summary>See Dockerfile</summary>
 ```docker reference title="tenzu/Dockerfile"

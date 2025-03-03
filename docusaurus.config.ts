@@ -92,12 +92,16 @@ const config: Config = {
               to: '/quickstart/',
             },
             {
-              label: 'Docker',
-              to: '/category/docker/',
+              label: 'Configuration',
+              to: '/configuration/',
             },
             {
-              label: 'Helm Chart',
-              to: '/category/helm-chart/',
+              label: 'Docker Compose',
+              to: '/deployment/docker-compose',
+            },
+            {
+              label: 'Kubernetes',
+              to: '/deployment/kubernetes',
             },
           ],
         },
