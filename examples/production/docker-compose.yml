@@ -1,0 +1,181 @@
+x-function: &tenzu-back
+    image: ghcr.io/biru-scop/tenzu-back:${BACKEND_IMAGE_TAG}
+    env_file:
+      -  tenzu.env
+    volumes:
+      - tenzu-static:/public/static
+      - tenzu-media:/public/media
+services:
+  tenzu-back:
+    <<: *tenzu-back
+    restart: always
+    profiles:
+      - start
+    networks:
+      - tenzu
+      - db
+    depends_on:
+      tenzu-worker:
+        condition: service_started
+      caddy:
+        condition: service_started
+      tenzu-db:
+        condition: service_healthy
+      tenzu-redis:
+        condition: service_healthy
+    command:
+      - "gunicorn"
+      - "configurations.asgi:application"
+      - "-k"
+      - "uvicorn.workers.UvicornWorker"
+      - "-w"
+      - "1"
+      - "-t"
+      - "120"
+      - "-b 0.0.0.0:8000"
+      - "--access-logfile"
+      - "-"
+      - "--log-file"
+      - "-"
+      - "--capture-output"
+      - "--log-level"
+      - "warning"
+  tenzu-worker:
+    <<: *tenzu-back
+    restart: always
+    profiles:
+      - start
+    command: "python manage.py procrastinate worker"
+    networks:
+      - db
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+
+  tenzu-db:
+    image: postgres:17
+    restart: always
+    profiles:
+      - start
+      - install
+      - update
+      - demo
+    env_file:
+      - db.env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tenzu"]
+      interval: 2s
+      timeout: 15s
+      retries: 5
+    volumes:
+      - tenzu-db-data:/var/lib/postgresql/data
+    networks:
+      - db
+
+  tenzu-redis:
+    image: redis:7.2
+    restart: always
+    profiles:
+      - start
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 15s
+      retries: 5
+    networks:
+      - db
+
+  caddy:
+    image: caddy:2.9
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    profiles:
+      - start
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/.caddy/config/:/config/
+      - ./caddy/.caddy/data/:/data/
+      - tenzu-static:/public/static
+      - tenzu-media:/public/media
+    networks:
+      - tenzu
+    env_file:
+      - ./caddy/caddy.env
+
+  tenzu-front:
+    image: ghcr.io/biru-scop/tenzu-front:${FRONTEND_IMAGE_TAG}
+    restart: always
+    profiles:
+      - start
+    volumes:
+      - ./config-front.json:/usr/share/caddy/assets/configs/config.json
+    networks:
+      - tenzu
+
+  migrate-job:
+    <<: *tenzu-back
+    profiles:
+      - install
+      - update
+    command: "python manage.py migrate"
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+    networks:
+      - db
+
+  collectstatic:
+    <<: *tenzu-back
+    profiles:
+      - install
+      - update
+    command: "python manage.py collectstatic --noinput"
+    networks:
+      - db
+
+
+  load-init-fixtures:
+    <<: *tenzu-back
+    command: "python manage.py loaddata initial_project_templates"
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+      migrate-job:
+        condition: service_completed_successfully
+    profiles:
+      - install
+    networks:
+      - db
+
+  load-demo-data:
+    <<: *tenzu-back
+    command: "python manage.py load_sampledata"
+    depends_on:
+      tenzu-db:
+        condition: service_healthy
+    profiles:
+       - demo
+    networks:
+      - db
+
+  generate-config:
+    image: ghcr.io/biru-scop/tenzu-back:${BACKEND_IMAGE_TAG}
+    env_file:
+      - initial-configurations/generate.env
+    volumes:
+      - .:/public/
+    profiles:
+       - generate-config
+    command: 'bash -c "cd /public/initial-configurations && sh generate.sh"'
+
+
+volumes:
+  tenzu-db-data:
+  tenzu-media:
+  tenzu-static:
+
+networks:
+  tenzu:
+  db:

@@ -40,44 +40,38 @@ const config: Config = {
           routeBasePath: '/',
         },
         blog: false,
-        // theme: {
-        //   customCss: './src/css/custom.css',
-        // },
       } satisfies Preset.Options,
     ],      
   ],
+  stylesheets: [
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
+  ],
+  markdown: {
+    mermaid: true,
+  },
   themes: [
+    '@docusaurus/theme-mermaid',
     'docusaurus-theme-github-codeblock'
   ],
   themeConfig: {
-
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'Tenzu documentation',
       logo: {
         alt: 'Tenzu logo',
-        src: 'img/logo-full-tenzu.svg',
+        src: 'img/logo_tenzu.svg',
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Documentation',
+          to: '..',
+          label: 'Website',
         },
         {
           href: 'https://github.com/BIRU-Scop',
           label: 'GitHub',
+          external: true,
+          position: 'right',
         },
-        {
-          href: 'https://tenzu.net/en/',
-          label: 'Website',
-        },
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
       ],
     },
     // github codeblock theme configuration
@@ -95,15 +89,19 @@ const config: Config = {
           items: [
             {
               label: 'Quickstart',
-              to: '/',
+              to: '/quickstart/',
             },
             {
-              label: 'Docker',
-              to: '/category/docker/',
+              label: 'Configuration',
+              to: '/configuration/',
             },
             {
-              label: 'Helm Chart',
-              to: '/category/helm-chart/',
+              label: 'Docker Compose',
+              to: '/deployment/docker-compose',
+            },
+            {
+              label: 'Kubernetes',
+              to: '/deployment/kubernetes',
             },
           ],
         },
@@ -112,7 +110,7 @@ const config: Config = {
           items: [
             {
               label: 'Website',
-              href: 'https://tenzu.net/en/',
+              to: '..',
             },
             {
               label: 'Community',
@@ -129,7 +127,7 @@ const config: Config = {
             },
             {
               label: 'Biru',
-              href: 'https://biru.sh/en/',
+              href: 'https://biru.sh/',
             },
           ],
         },
@@ -144,6 +142,7 @@ const config: Config = {
     prism: {
       darkTheme: prismThemes.dracula,
       theme: prismThemes.github,
+      additionalLanguages: ['bash', 'docker'],
     },
   } satisfies Preset.ThemeConfig,
 };

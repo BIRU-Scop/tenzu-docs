@@ -18,7 +18,7 @@ contributing in the future. We are very active there and you'll be able to recei
 progress!
 
 # Community
-We are very active at our [community webstite](https://community.tenzu.net) and always happy to get in 
+We are very active at our [community website](https://community.tenzu.net) and always happy to get in 
 touch with our users there.
 
 # Guide
