@@ -22,14 +22,14 @@ jobs:
         uses: thedoctor0/zip-release@0.7.6
         with:
           type: 'tar'
-          filename: 'quickstart.tar.gz'
+          filename: '../quickstart.tar.gz'
           directory: examples
           path: quickstart
       - name: Archive production Release
         uses: thedoctor0/zip-release@0.7.6
         with:
           type: 'tar'
-          filename: 'production.tar.gz'
+          filename: '../production.tar.gz'
           directory: examples
           path: production
       - name: Upload Release
@@ -39,6 +39,7 @@ jobs:
           allowUpdates: true
           tag: "archive"
           replacesArtifacts: true
+          artifactErrorsFailBuild: true
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
         with:
