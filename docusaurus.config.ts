@@ -54,7 +54,12 @@ const config: Config = {
     'docusaurus-theme-github-codeblock'
   ],
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/logo_tenzu.svg',
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     navbar: {
       title: 'Tenzu documentation',
       logo: {
@@ -63,8 +68,9 @@ const config: Config = {
       },
       items: [
         {
-          to: '..',
           label: 'Website',
+          to: 'https://tenzu.net/',
+          target: '_self',
         },
         {
           href: 'https://github.com/BIRU-Scop',
@@ -97,11 +103,11 @@ const config: Config = {
             },
             {
               label: 'Docker Compose',
-              to: '/deployment/docker-compose',
+              to: '/deployment/docker-compose/',
             },
             {
               label: 'Kubernetes',
-              to: '/deployment/kubernetes',
+              to: '/deployment/kubernetes/',
             },
           ],
         },
@@ -110,7 +116,8 @@ const config: Config = {
           items: [
             {
               label: 'Website',
-              to: '..',
+              to: 'https://tenzu.net/',
+              target: '_self',
             },
             {
               label: 'Community',
