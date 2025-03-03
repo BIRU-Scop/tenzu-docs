@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.9](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.8...v0.0.9) (2025-03-03)
+
+
+### Bug Fixes
+
+* fix archive paths ([c87762e](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/c87762e396c5a3fddd932066c4fbe77cb7f3cf5d))
+* prevent invalid link and make navbar collapsible ([04ca51e](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/04ca51ee5d7da788730c5e8326ae184c2ab9e102))
+
 ## [0.0.8](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.7...v0.0.8) (2025-03-03)
 
 
