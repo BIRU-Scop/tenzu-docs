@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.7...v0.0.8) (2025-03-03)
+
+
+### Features
+
+* better table styling ([ceb8375](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/ceb8375cc10c0fc372d69323416d3e5859e897eb))
+* refactor docs structure and use helm new readme to rewrite helm doc, remove argocd example ([bf91c9e](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/bf91c9e3768a33419e0393720859bf28a80af78f))
+* remove *_ROOT folder location from being overridable ([4ca0419](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/4ca041905b6366d953eb4eacde40e9a8733b8a36))
+
+
+### Bug Fixes
+
+* use gunicorn instead of runserver, don't call migrate on each restart ([52aeed1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/52aeed1fd2767e856b985c24379cb351f6dbbb1e))
+
 ## [0.0.7](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.6...v0.0.7) (2025-02-19)
 
 
