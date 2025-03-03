@@ -24,3 +24,5 @@ examples/production/caddy/caddy.env
 examples/production/config-front.json
 examples/production/tenzu.env
 examples/production/db.env
+quickstart.tar.gz
+production.tar.gz

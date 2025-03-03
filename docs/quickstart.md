@@ -14,14 +14,14 @@ Make sure you have **[Docker Desktop](https://www.docker.com/get-started/)** ins
 
 ## Setup Environment
 
-[Download](https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/quickstart.tgz) and extract the Quickstart package:
+[Download](https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/quickstart.tar.gz) and extract the Quickstart package:
 
 ```bash
 # Download the Quickstart package
-curl -L -o quickstart.tgz https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/quickstart.tgz
+curl -L -o quickstart.tar.gz https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/quickstart.tar.gz
 
 # Extract the downloaded file
-tar -xvzf quickstart.tgz
+tar -xvzf quickstart.tar.gz
 
 # go into the directory
 cd quickstart

@@ -37,14 +37,14 @@ You'll then need to run some setup tasks before being able to run Tenzu itself.
 
 ### Setup Environment
 
-[Download](https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/production.tgz) and extract the production package:
+[Download](https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/production.tar.gz) and extract the production package:
 
 ```bash
 # Download the Production package
-curl -L -o production.tgz https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/production.tgz
+curl -L -o production.tar.gz https://github.com/BIRU-Scop/tenzu-docs/releases/download/archive/production.tar.gz
 
 # Extract the downloaded file
-tar -xvzf production.tgz
+tar -xvzf production.tar.gz
 
 # go into the directory
 cd production
