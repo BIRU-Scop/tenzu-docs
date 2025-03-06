@@ -7,6 +7,9 @@ sidebar_label: Quickstart
 # Quickstart
 
 This guide provides an easy Docker Compose setup to help you try Tenzu locally in under two minutes.
+:::danger
+Do not use this setup to deploy
+:::
 
 ## Prerequisite
 
@@ -50,7 +53,17 @@ docker compose --profile start up
 
 ### Access Tenzu
 
-Once running, open [localhost:8000](http://localhost:8000/) in your browser.
+Once running, open [localhost:8001](http://localhost:8001/) in your browser.
+
+#### Change the local port number
+
+If you need to change the local port that is used because `8001` is not accessible on your machine, you need to update the port number in several places:
+- `.env`: the `LOCAL_PORT` value
+- `tenzu.env`: the `TENZU_BACKEND_URL` and `TENZU_FRONTEND_URL` values
+- `config-front.json`: the `baseDomain` and `wsUrl` values
+:::tip
+A find and replace of `8001` to whatever you want inside the quickstart folder will also do the trick.
+:::
 
 ### User Accounts
 

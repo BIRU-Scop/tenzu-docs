@@ -33,6 +33,7 @@ Then, to deploy Tenzu, you'll need to ensure that your environment meets the fol
 - A PostgreSQL database (minimum required version: 14).
 - A Redis instance (minimum required version: 7.1).
 - A reverse proxy (caddy, traefik, nginx, apache, ...) responsible for proxying API/Websocket requests to the backend and Managing SSL certificates
+- A SMTP server to deliver transactional mails
 
 
 ## Architecture diagram

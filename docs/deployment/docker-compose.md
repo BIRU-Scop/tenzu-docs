@@ -187,11 +187,13 @@ Some useful jobs to interact with the app:
 
 ### Permission access error
 
-Please note that in the image we set the user to `default-user:default-group` and that only the following paths are owned by this user:
-- `/tenzu`
-- `/public`
+The default user in our Docker image is `default-user:default-group`.
 
-If you get permission error about some path, this can be the root cause.
+Inside the image, `/public` contains some folders that are mounted on your machine; the `default-user` needs to have write access to the mounted paths.
+With a default Docker installation, this should not be an issue.
+
+If you have made any change to the default Docker volume configuration or have installed Docker in a non-standard way (e.g. rootless mode), 
+you need to check if `default-user` can write in the mounted volume.
 
 <details>
   <summary>See Dockerfile</summary>

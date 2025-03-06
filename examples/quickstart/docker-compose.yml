@@ -84,7 +84,7 @@ services:
   caddy:
     image: caddy:2.9
     ports:
-      - "8000:8000"
+      - "${LOCAL_PORT}:8000"
     profiles:
       - start
     volumes:
@@ -95,8 +95,6 @@ services:
       - tenzu-media:/public/media
     networks:
       - tenzu
-    env_file:
-      - ./caddy/caddy.env
 
   tenzu-front:
     image: ghcr.io/biru-scop/tenzu-front:${FRONTEND_IMAGE_TAG}
