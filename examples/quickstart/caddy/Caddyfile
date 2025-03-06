@@ -1,4 +1,4 @@
-{$TENZU_FRONT_URL} {
+:8000 {
    @public {
        path /media/* /static/*
    }
