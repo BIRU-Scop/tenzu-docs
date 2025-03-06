@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.12](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.11...v0.0.12) (2025-03-06)
+
+
+### Features
+
+* make it easier to change quickstart local port ([a27b1cc](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/a27b1cc234387e8a47bc343e3344f0a2ab919151))
+
 ## [0.0.11](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.10...v0.0.11) (2025-03-03)
 
 ## [0.0.10](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v0.0.9...v0.0.10) (2025-03-03)
