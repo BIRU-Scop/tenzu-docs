@@ -1,7 +1,10 @@
 {
+  "env": "production",
   "api": {
     "baseDomain": "$DOMAIN_NAME",
-    "scheme": "https"
+    "scheme": "https",
+    "suffixDomain": "api",
+    "prefix": "v1"
   },
   "wsUrl": "wss://$DOMAIN_NAME/events/"
 }

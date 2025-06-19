@@ -1,7 +1,10 @@
 {
+  "env": "staging",
   "api": {
     "baseDomain": "localhost:8001",
-    "scheme": "http"
+    "scheme": "http",
+    "suffixDomain": "api",
+    "prefix": "v1"
   },
   "wsUrl": "ws://localhost:8001/events/"
 }

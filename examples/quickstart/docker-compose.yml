@@ -129,19 +129,9 @@ services:
       - tenzu
 
 
-  load-init-fixtures:
-    <<: *tenzu-back
-    command: "python manage.py loaddata initial_user initial_project_templates"
-    depends_on:
-      tenzu-db:
-        condition: service_healthy
-    profiles:
-      - install
-    networks:
-      - tenzu
   load-demo-data:
     <<: *tenzu-back
-    command: "python manage.py load_sampledata"
+    command: bash -c "python manage.py loaddata initial_user && python manage.py load_sampledata"
     depends_on:
       tenzu-db:
         condition: service_healthy

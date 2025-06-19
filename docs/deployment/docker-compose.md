@@ -85,7 +85,7 @@ The previous command will automatically generate the following configuration fil
 :::warning
 If you change one of the value that was previously set using `initial-configurations/generate.env`,
 take care to change it everywhere it is used either using the `generate-config` command again or
-manually if you've already made some changes you want to keep to the configurations files.
+manually if you've already made some changes you want to keep in the configurations files.
 :::
 
 ##### tenzu.env
@@ -96,7 +96,7 @@ This file is used to define Tenzu configuration variables used by the frontend, 
 
 ##### caddy/caddy.env
 This file will be used to set the domain name used by the reverse proxy configuration (in `production/caddy/Caddyfile`)
-It should not be edited except if you're changing the domain name everywhere without using `generate-config`.
+It should not be edited except if you're changing the domain name without using `generate-config`.
 
 ##### db.env
 This file is used to define Postgresql environment variables used by the database, see the [documentation about them](https://hub.docker.com/_/postgres).
@@ -111,11 +111,9 @@ Run:
 docker compose run --remove-orphans migrate-job
 # deploy the assets files
 docker compose run --remove-orphans collectstatic
-# load required data
-docker compose run --remove-orphans load-init-fixtures
 ```
 
-If you want to try out the demo sample data:
+If you want to try out the demo sample data (the command takes a little while to execute):
 
 ```bash
 docker compose run --remove-orphans load-demo-data # load some dummy data
@@ -132,13 +130,13 @@ FRONTEND_IMAGE_TAG="latest"
 ### Start
 
 ```bash
-docker compose --profile start up --wait -d
+docker compose --profile start up --remove-orphans --wait -d
 ```
 
 This command is used to run Tenzu in a background task. If there is a crash, they will restart automatically.
 
 :::note
-When everything run as you want it to, delete the `initial-configuration` directory to prevent from using it again.
+When everything run as you want it to, delete the `initial-configuration` directory to prevent using it again by mistake.
 :::
 
 ### Update
@@ -178,7 +176,6 @@ Here's an overview of the services used in the docker-compose:
 Some useful jobs to interact with the app:
 - **`migrate-job`**: Run the migration that have not been applied yet.
 - **`collectstatic`**: Build the assets files.
-- **`load-init-fixture`**: Load all required data before you can use the app.
 - **`load-demo-data`**: Loads sample data to test the app.
 - **`generate-config`**: **Replace** config files with their initial values using provided environment.
 
