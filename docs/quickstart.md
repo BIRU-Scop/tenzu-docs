@@ -40,15 +40,13 @@ Run the Tenzu application locally:
 docker compose run --remove-orphans migrate-job
 # deploy the assets files
 docker compose run --remove-orphans collectstatic
-# load required data
-docker compose run --remove-orphans load-init-fixtures
 
 # Install with sample data (demo mode)
-# Note: Wait until the demo fixture has finished loading before accessing the app.
+# Note: Wait until the demo fixture has finished loading before accessing the app. It takes a little while.
 docker compose run --remove-orphans load-demo-data 
 
-# Run again after first installation
-docker compose --profile start up
+# Run command; after initial installation this is the only one you'll need
+docker compose --profile start up --remove-orphans
 ```
 
 ### Access Tenzu
@@ -66,14 +64,19 @@ A find and replace of `8001` to whatever you want inside the quickstart folder w
 :::
 
 ### User Accounts
-
-#### Default admin user
-- **Username:** `admin`
-- **Password:** `123123`
+These account are only available if you have used the provided sample data.
 
 #### Demo users accounts
-These account are only available if you have used the provided sample data.
 - **Usernames:** from `1user` to `1003user`
+- **Password:** `123123`
+
+#### Default admin user
+
+:::danger
+Only use this user to connect to the django admin,
+do not use it to interact with the Tenzu app itself or you'll get weird issues with permissions.
+:::
+- **Username:** `admin`
 - **Password:** `123123`
 
 **Enjoy exploring Tenzu!**

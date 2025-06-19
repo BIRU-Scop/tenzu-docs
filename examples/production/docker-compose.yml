@@ -86,7 +86,7 @@ services:
       - db
 
   caddy:
-    image: caddy:2.9
+    image: caddy:2.10
     restart: always
     ports:
       - "80:80"
@@ -132,20 +132,6 @@ services:
       - install
       - update
     command: "python manage.py collectstatic --noinput"
-    networks:
-      - db
-
-
-  load-init-fixtures:
-    <<: *tenzu-back
-    command: "python manage.py loaddata initial_project_templates"
-    depends_on:
-      tenzu-db:
-        condition: service_healthy
-      migrate-job:
-        condition: service_completed_successfully
-    profiles:
-      - install
     networks:
       - db
 
