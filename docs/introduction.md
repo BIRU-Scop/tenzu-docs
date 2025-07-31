@@ -24,6 +24,7 @@ Tenzu is based on a modular architecture composed of the following elements:
 - **Redis**: Broker for WebSockets.
 - **Reverse Proxy**: Manages routing and security of incoming requests.
 - **Task Queue**: Manages asynchronous tasks.
+- **S3**: Optional s3 backend for files storage.
 
 ## Prerequisites
 At the very least you'll need:
