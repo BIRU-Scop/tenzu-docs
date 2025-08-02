@@ -52,12 +52,11 @@ flowchart TD
     reverse_proxy([fa:fa-sitemap Reverse Proxy])
     procrastinate(["`fa:fa-gears **Tasks queue service**
     Procrastinate`" ])
-    data@{ shape: lin-cyl, label: "fa:fa-folder Files data" }
+    data@{ shape: lin-cyl, label: "fa:fa-folder Files data or S3" }
     reverse_proxy --- frontend
     reverse_proxy --- backend
     backend --> redis
     backend --> data
-    reverse_proxy --> data
     procrastinate --> data
     backend --> db  
     procrastinate --> db

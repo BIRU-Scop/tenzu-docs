@@ -3,7 +3,6 @@ x-function: &tenzu-back
     env_file:
       -  tenzu.env
     volumes:
-      - tenzu-static:/public/static
       - tenzu-media:/public/media
 services:
   tenzu-back:
@@ -91,7 +90,6 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./caddy/.caddy/config/:/config/
       - ./caddy/.caddy/data/:/data/
-      - tenzu-static:/public/static
       - tenzu-media:/public/media
     networks:
       - tenzu
@@ -118,16 +116,6 @@ services:
     networks:
       - tenzu
 
-  collectstatic:
-    <<: *tenzu-back
-    profiles:
-      - install
-      - update
-      - demo
-    command: "python manage.py collectstatic --noinput"
-    networks:
-      - tenzu
-
 
   load-demo-data:
     <<: *tenzu-back
@@ -143,7 +131,6 @@ services:
 volumes:
   tenzu-db-data:
   tenzu-media:
-  tenzu-static:
 
 networks:
   tenzu:

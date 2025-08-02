@@ -38,8 +38,6 @@ Run the Tenzu application locally:
 # Install with minimal data
 # apply the database migration
 docker compose run --remove-orphans migrate-job
-# deploy the assets files
-docker compose run --remove-orphans collectstatic
 
 # Install with sample data (demo mode)
 # Note: Wait until the demo fixture has finished loading before accessing the app. It takes a little while.
