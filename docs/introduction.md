@@ -24,6 +24,7 @@ Tenzu is based on a modular architecture composed of the following elements:
 - **Redis**: Broker for WebSockets.
 - **Reverse Proxy**: Manages routing and security of incoming requests.
 - **Task Queue**: Manages asynchronous tasks.
+- **S3**: Optional s3 backend for files storage.
 
 ## Prerequisites
 At the very least you'll need:
@@ -51,12 +52,11 @@ flowchart TD
     reverse_proxy([fa:fa-sitemap Reverse Proxy])
     procrastinate(["`fa:fa-gears **Tasks queue service**
     Procrastinate`" ])
-    data@{ shape: lin-cyl, label: "fa:fa-folder Files data" }
+    data@{ shape: lin-cyl, label: "fa:fa-folder Files data or S3" }
     reverse_proxy --- frontend
     reverse_proxy --- backend
     backend --> redis
     backend --> data
-    reverse_proxy --> data
     procrastinate --> data
     backend --> db  
     procrastinate --> db

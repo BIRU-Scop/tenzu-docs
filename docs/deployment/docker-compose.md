@@ -109,8 +109,6 @@ Run:
 ```bash
 # apply the database migration
 docker compose run --remove-orphans migrate-job
-# deploy the assets files
-docker compose run --remove-orphans collectstatic
 ```
 
 If you want to try out the demo sample data (the command takes a little while to execute):
@@ -153,7 +151,6 @@ docker compose pull tenzu-front
 docker compose --profile start stop
 # apply change from new version
 docker compose run --remove-orphans migrate-job 
-docker compose run --remove-orphans collectstatic
 # start Tenzu again
 docker compose --profile start up --wait -d
 ```
@@ -175,7 +172,6 @@ Here's an overview of the services used in the docker-compose:
 
 Some useful jobs to interact with the app:
 - **`migrate-job`**: Run the migration that have not been applied yet.
-- **`collectstatic`**: Build the assets files.
 - **`load-demo-data`**: Loads sample data to test the app.
 - **`generate-config`**: **Replace** config files with their initial values using provided environment.
 
