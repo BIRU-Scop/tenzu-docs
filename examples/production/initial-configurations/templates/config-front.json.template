@@ -6,5 +6,6 @@
     "suffixDomain": "api",
     "prefix": "v1"
   },
-  "wsUrl": "wss://$DOMAIN_NAME/events/"
+  "wsUrl": "wss://$DOMAIN_NAME/events/",
+  "legal": null,
 }

@@ -6,5 +6,6 @@
     "suffixDomain": "api",
     "prefix": "v1"
   },
-  "wsUrl": "ws://localhost:8001/events/"
+  "wsUrl": "ws://localhost:8001/events/",
+  "legal": null
 }
