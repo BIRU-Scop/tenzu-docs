@@ -11,11 +11,6 @@ import TabItem from '@theme/TabItem';
 import ExternalMarkdown from '/src/components/ExternalMarkdown';
 import styles from '/src/css/kubernetes.module.css';
 
-:::danger
-Tenzu is not yet ready to be used in production environment.
-We have some more updates incoming before then.
-:::
-
 We provide some ready-made Helm charts to easily deploy Tenzu in a k8s cluster.
 
 First, you'll need to install our Helm chart repository:

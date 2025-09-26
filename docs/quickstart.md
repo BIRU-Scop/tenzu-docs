@@ -6,7 +6,7 @@ sidebar_label: Quickstart
 
 # Quickstart
 
-This guide provides an easy Docker Compose setup to help you try Tenzu locally in under two minutes.
+This guide provides an easy Docker Compose setup to help you try out Tenzu locally in under two minutes.
 :::danger
 Do not use this setup to deploy
 :::
