@@ -4,11 +4,6 @@ sidebar_position: 3
 
 # Docker Compose
 
-:::danger
-Tenzu is not yet ready to be used in production environment.
-We have some more updates incoming before then.
-:::
-
 ## Introduction
 This guide will explain how to install Tenzu in production mode using HTTPS
 for very simple use cases (evaluate, small volumes, *etc*)
