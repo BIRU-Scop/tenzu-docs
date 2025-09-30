@@ -1,14 +1,14 @@
 include:
-  - component: $CI_SERVER_FQDN/biru/component/push@v1.9.1
+  - component: $CI_SERVER_FQDN/biru/component/push@v1.16.0
     inputs:
       repo: github.com/BIRU-Scop/tenzu-docs
       fetch-args: "origin --no-tags"
       push-args: "origin HEAD:refs/heads/$CI_COMMIT_REF_NAME"
-  - component: $CI_SERVER_FQDN/biru/project-components/release@0.0.18
+  - component: $CI_SERVER_FQDN/biru/project-components/release@1.0.0
     inputs:
       token: $DEV_TOKEN
       release-branch: main
-  - component: $CI_SERVER_FQDN/biru/project-components/build-deploy@0.0.18
+  - component: $CI_SERVER_FQDN/biru/project-components/build-deploy@1.0.0
     inputs:
       project-name: tenzu-site
       values-path: values/$PROJECT_NAME/values-base-production.yaml
