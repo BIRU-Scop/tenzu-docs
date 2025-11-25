@@ -2,5 +2,6 @@
    reverse_proxy /api/* tenzu-back:8000
    reverse_proxy /admin/* tenzu-back:8000
    reverse_proxy /events/ tenzu-back:8000
+   reverse_proxy /static/* tenzu-back:8000
    reverse_proxy tenzu-front:80
 }
