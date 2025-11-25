@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.1.1...v1.2.0) (2025-11-25)
+
+
+### Features
+
+* update the caddyfile configuration and the docker compose to remove old static volume and old media volume ([5137d5c](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/5137d5c246f2c9b5083ca1f072651088aeed6487))
+
 ## [1.1.1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.1.0...v1.1.1) (2025-11-06)
 
 ## [1.1.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.0.0...v1.1.0) (2025-11-05)
