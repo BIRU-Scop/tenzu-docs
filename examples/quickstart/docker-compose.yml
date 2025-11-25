@@ -1,7 +1,7 @@
 x-function: &tenzu-back
     image: ghcr.io/biru-scop/tenzu-back:${BACKEND_IMAGE_TAG}
     env_file:
-      -  tenzu.env
+      - tenzu.env
     volumes:
       - tenzu-media:/public/media
 services:
@@ -81,7 +81,7 @@ services:
       - tenzu
 
   caddy:
-    image: caddy:2.9
+    image: caddy:2.10
     ports:
       - "${LOCAL_PORT}:8000"
     profiles:
@@ -90,7 +90,6 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./caddy/.caddy/config/:/config/
       - ./caddy/.caddy/data/:/data/
-      - tenzu-media:/public/media
     networks:
       - tenzu
 
