@@ -52,6 +52,8 @@ You might also need to setup an `Ingress`, each chart provides an `ingress` valu
 
 You also have a `sentry` value to configure connexion to a sentry/glitchtip error tracker.
 
+## Example files
+
 <Tabs groupId="chart-type">
   <TabItem value="tenzu-back" label="tenzu-back" default>
 
@@ -62,11 +64,11 @@ ingress:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-production-dns01"
   hosts:
-    - "tenzu-api-test.biru.sh"
+    - "tenzu-api.mycompany.com"
   tls:
     - hosts:
-        - "tenzu-api-test.biru.sh"
-      secretName: "tenzu-api-test.biru.sh-tls"
+        - "tenzu-api.mycompany.com"
+      secretName: "tenzu-api.mycompany.com-tls"
 postgresql:
   host: "$APP_NAME-postgres.$NAMESPACE.svc.cluster.local"
   # Load postgresql credentials from a secret
@@ -79,6 +81,9 @@ redis:
   host: "$APP_NAME-redis-headless.$NAMESPACE.svc.cluster.local"
   # Load redis credentials from a raw value
   password: "redisPassword"
+env:
+  - name: TENZU_USER_EMAIL_ALLOWED_DOMAINS
+    value: '["mycompany.com","mycompany.org"]'
 email:
   defaultFrom: "from@mycompany.com"
   host: "ssl0.ovh.net"
@@ -94,9 +99,9 @@ tokensSigningKey: "jwt-secret-key"
 
 global:
   frontendUrl:
-    host: "demo.tenzu.app"
+    host: "tenzu.mycompany.com"
   backendUrl:
-    host: "demo-api.tenzu.app"
+    host: "tenzu-api.mycompany.com"
 ```
 
   </TabItem>
@@ -109,11 +114,11 @@ ingress:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-production-dns01"
   hosts:
-    - "tenzu-test.biru.sh"
+    - "tenzu.mycompany.com"
   tls:
     - hosts:
-        - "tenzu-test.biru.sh"
-      secretName: "tenzu-front-test.biru.sh-tls"
+        - "tenzu.mycompany.com"
+      secretName: "tenzu.mycompany.com-tls"
 sentry:
   enabled: true
   dsn: "frontend-dsn"
@@ -121,7 +126,78 @@ sentry:
 
 global:
   backendUrl:
-    host: "demo-api.tenzu.app"
+    host: "tenzu-api.mycompany.com"
+```
+
+  </TabItem>
+</Tabs>
+
+## SSO
+
+If you want to configure your Tenzu instance with SSO, you can do that using the `env` and `secretEnv` values in 
+the tenzu-back chart in order to configure the variables you need.
+
+Example configurations:
+
+<Tabs groupId="chart-type">
+  <TabItem value="ldap" label="LDAP" default>
+
+```yaml tenzu-back/example-values.yml
+env:
+  - name: TENZU_LDAP__ACTIVATION
+    value: "strict"
+  - name: TENZU_LDAP__SERVER_URI
+    value: "ldap://ldap.mycompany.com"
+  - name: TENZU_LDAP__USER_ATTR_MAP
+    value: '{"full_name": "cn","email": "mail","username": "uid"}'
+  - name: TENZU_LDAP__USER_QUERY_FIELD
+    value: "username"
+  - name: TENZU_LDAP__USER_FLAGS_BY_GROUP
+    value: '{"is_active": "cn=users,ou=groups,dc=mycompany,dc=com"}'
+  - name: TENZU_LDAP__USER_SEARCH
+    value: '[{"base_dn": "ou=users,dc=mycompany,dc=com", "scope": 2, "filterstr": "(|(mail=%(user)s)(uid=%(user)s))"}]'
+  - name: TENZU_LDAP__REQUIRE_GROUP
+    value: 'cn=users,ou=groups,dc=mycompany,dc=com'
+  - name: TENZU_LDAP__CONNECTION_OPTIONS
+    value: '{"8": 0, "24582": 0, "24591": 0}'
+  - name: TENZU_LDAP__START_TLS
+    value: "True"
+  - name: TENZU_LDAP__BIND_DN
+    value: 'cn=readonly,dc=mycompany,dc=com'
+  - name: TENZU_LDAP__GROUP_SEARCH
+    value: '{"base_dn": "ou=groups,dc=mycompany,dc=com", "scope": 2, "filterstr": "(objectClass=groupOfUniqueNames)"}'
+  - name: TENZU_LDAP__GROUP_TYPE
+    value: '{"class_name": "django_auth_ldap.config.NestedGroupOfUniqueNamesType"}'
+secretEnv:
+  - name: TENZU_LDAP__BIND_PASSWORD
+    value: "Cr53VwAK58eyGr42jH"
+```
+
+  </TabItem>
+  <TabItem value="allauth" label="Others SSO protocols" default>
+
+```yaml tenzu-back/example-values.yml
+env:
+  - name: TENZU_ACCOUNT__SOCIALAPPS_PROVIDERS
+    value: '["allauth.socialaccount.providers.openid_connect"]'
+secretEnv:
+  - name: TENZU_ACCOUNT__SOCIALACCOUNT_PROVIDERS
+    value: '{
+    "openid_connect": {
+      "APPS": [
+        {
+          "provider_id": "my-server",
+          "name": "My Login Server",
+          "client_id": "your.service.id",
+          "secret": "your.service.secret",
+          "settings": {
+            "fetch_userinfo": True,
+            "oauth_pkce_enabled": True,
+            "server_url": "https://my.server.example.com",
+        }
+      ]
+    }
+  }'
 ```
 
   </TabItem>
