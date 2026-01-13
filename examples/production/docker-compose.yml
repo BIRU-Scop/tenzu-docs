@@ -1,5 +1,6 @@
 x-function: &tenzu-back
     image: ghcr.io/biru-scop/tenzu-back:${BACKEND_IMAGE_TAG}
+    user: "${DOCKER_USER:-root}"
     env_file:
       -  tenzu.env
     volumes:
