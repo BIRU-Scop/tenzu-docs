@@ -144,33 +144,20 @@ Example configurations:
 
 ```yaml tenzu-back/example-values.yml
 env:
-  - name: TENZU_LDAP__ACTIVATION
-    value: "strict"
-  - name: TENZU_LDAP__SERVER_URI
-    value: "ldap://ldap.mycompany.com"
-  - name: TENZU_LDAP__USER_ATTR_MAP
-    value: '{"full_name": "cn","email": "mail","username": "uid"}'
-  - name: TENZU_LDAP__USER_QUERY_FIELD
-    value: "username"
-  - name: TENZU_LDAP__USER_FLAGS_BY_GROUP
-    value: '{"is_active": "cn=users,ou=groups,dc=mycompany,dc=com"}'
-  - name: TENZU_LDAP__USER_SEARCH
-    value: '[{"base_dn": "ou=users,dc=mycompany,dc=com", "scope": 2, "filterstr": "(|(mail=%(user)s)(uid=%(user)s))"}]'
-  - name: TENZU_LDAP__REQUIRE_GROUP
-    value: 'cn=users,ou=groups,dc=mycompany,dc=com'
-  - name: TENZU_LDAP__CONNECTION_OPTIONS
-    value: '{"8": 0, "24582": 0, "24591": 0}'
-  - name: TENZU_LDAP__START_TLS
-    value: "True"
-  - name: TENZU_LDAP__BIND_DN
-    value: 'cn=readonly,dc=mycompany,dc=com'
-  - name: TENZU_LDAP__GROUP_SEARCH
-    value: '{"base_dn": "ou=groups,dc=mycompany,dc=com", "scope": 2, "filterstr": "(objectClass=groupOfUniqueNames)"}'
-  - name: TENZU_LDAP__GROUP_TYPE
-    value: '{"class_name": "django_auth_ldap.config.NestedGroupOfUniqueNamesType"}'
+  TENZU_LDAP__ACTIVATION: "strict"
+  TENZU_LDAP__SERVER_URI: "ldap://ldap.mycompany.com"
+  TENZU_LDAP__USER_ATTR_MAP: '{"full_name": "cn","email": "mail","username": "uid"}'
+  TENZU_LDAP__USER_QUERY_FIELD: "username"
+  TENZU_LDAP__USER_FLAGS_BY_GROUP: '{"is_active": "cn=users,ou=groups,dc=mycompany,dc=com"}'
+  TENZU_LDAP__USER_SEARCH: '[{"base_dn": "ou=users,dc=mycompany,dc=com", "scope": 2, "filterstr": "(|(mail=%(user)s)(uid=%(user)s))"}]'
+  TENZU_LDAP__REQUIRE_GROUP: 'cn=users,ou=groups,dc=mycompany,dc=com'
+  TENZU_LDAP__CONNECTION_OPTIONS: '{"8": 0, "24582": 0, "24591": 0}'
+  TENZU_LDAP__START_TLS: "True"
+  TENZU_LDAP__BIND_DN: 'cn=readonly,dc=mycompany,dc=com'
+  TENZU_LDAP__GROUP_SEARCH: '{"base_dn": "ou=groups,dc=mycompany,dc=com", "scope": 2, "filterstr": "(objectClass=groupOfUniqueNames)"}'
+  TENZU_LDAP__GROUP_TYPE: '{"class_name": "django_auth_ldap.config.NestedGroupOfUniqueNamesType"}'
 secretEnv:
-  - name: TENZU_LDAP__BIND_PASSWORD
-    value: "Cr53VwAK58eyGr42jH"
+  TENZU_LDAP__BIND_PASSWORD: "Cr53VwAK58eyGr42jH"
 ```
 
   </TabItem>
@@ -178,11 +165,9 @@ secretEnv:
 
 ```yaml tenzu-back/example-values.yml
 env:
-  - name: TENZU_ACCOUNT__SOCIALAPPS_PROVIDERS
-    value: '["allauth.socialaccount.providers.openid_connect"]'
+  TENZU_ACCOUNT__SOCIALAPPS_PROVIDERS: '["allauth.socialaccount.providers.openid_connect"]'
 secretEnv:
-  - name: TENZU_ACCOUNT__SOCIALACCOUNT_PROVIDERS
-    value: '{
+  TENZU_ACCOUNT__SOCIALACCOUNT_PROVIDERS: '{
     "openid_connect": {
       "APPS": [
         {
