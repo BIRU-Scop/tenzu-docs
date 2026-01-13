@@ -44,6 +44,16 @@ tar -xvzf production.tar.gz
 # go into the directory
 cd production
 ```
+:::warning
+If you run your container with a non-root user, you need to set the `DOCKER_USER` environment variable to the user that will run the container.
+You can use the `id -u` command to get the user ID of the current user and `id -g` command to get the group ID of the current user and run the following command:
+
+```bash
+export DOCKER_USER=$(id -u):$(id -g)
+```
+
+Or you can edit the `.env` file with your favorite editor and set the `DOCKER_USER` variable in it with the result of `$(id -u):$(id -g)`
+:::
 
 ### Configuration
 
@@ -189,3 +199,16 @@ you need to check if `default-user` can write in the mounted volume.
 https://github.com/BIRU-Scop/tenzu-back/blob/main/buildrun/docker/tenzu/Dockerfile
 ```
 </details>
+
+### generate.sh Permission denied
+
+If you get the following error after running `docker compose run --remove-orphans generate-config`:
+
+```bash 
+generate.sh: 1: cannot create ../config-front.json: Permission denied
+generate.sh: 2: cannot create ../caddy/caddy.env: Permission denied
+generate.sh: 3: cannot create ../tenzu.env: Permission denied
+generate.sh: 4: cannot create ../db.env: Permission denied
+```
+You need to run docker compose with a user that has write permissions on the project directory.
+See the relevant warning in [Setup Environment](deployment/docker-compose.md#setup-environment)

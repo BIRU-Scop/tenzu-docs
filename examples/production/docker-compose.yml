@@ -137,6 +137,7 @@ services:
 
   generate-config:
     image: ghcr.io/biru-scop/tenzu-back:${BACKEND_IMAGE_TAG}
+    user: "${DOCKER_USER:-root}"
     env_file:
       - initial-configurations/generate.env
     volumes:
