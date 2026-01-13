@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.2.1...v1.3.0) (2026-01-13)
+
+
+### Features
+
+* add the ability to change the user running the generate-config service ([6f58087](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/6f58087bca9d92e98749654846deab96c1e81931))
+
+
+### Bug Fixes
+
+* use new env value format expected by the helm chart for SSO examples ([bca8f98](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/bca8f98bd6bf62385908b95adebaabfbb5b5f10c))
+
 ## [1.2.1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.2.0...v1.2.1) (2025-12-25)
 
 ## [1.2.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.1.1...v1.2.0) (2025-11-25)
