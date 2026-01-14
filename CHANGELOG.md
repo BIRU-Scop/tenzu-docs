@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.3.0...v1.3.1) (2026-01-14)
+
+
+### Bug Fixes
+
+* add user for all services which use public ([37f2608](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/37f2608e6417293f30c2bddc5786247cf007aede))
+
 ## [1.3.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.2.1...v1.3.0) (2026-01-13)
 
 
