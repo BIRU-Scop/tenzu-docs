@@ -7,6 +7,10 @@ hide_table_of_contents: true
 
 We try to make Tenzu easily configurable for your own use-case.
 
+:::warning
+Tenzu must be deployed with HTTPS if you are not using a local url for testing purpose (127.0.0.1, localhost).
+:::
+
 ## Configure Tenzu Backend
 
 The backend is fully configurable using environment variables.
