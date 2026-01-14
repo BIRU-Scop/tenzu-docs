@@ -7,5 +7,5 @@
     "prefix": "v1"
   },
   "wsUrl": "wss://$DOMAIN_NAME/events/",
-  "legal": null,
+  "legal": null
 }

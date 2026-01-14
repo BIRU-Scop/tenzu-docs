@@ -5,14 +5,26 @@ sidebar_position: 3
 # Docker Compose
 
 ## Introduction
-This guide will explain how to install Tenzu in production mode using HTTPS
-for very simple use cases (evaluate, small volumes, *etc*)
+This guide explains how to install Tenzu in production mode using HTTPS
+for very simple use cases (evaluation, small volumes, *etc*).
+
+This recipe assumes that your environment is straightforward: a dedicated 
+virtual machine (VM) with a root user and:
+- Docker installed in root mode,
+- a firewall and ports 80 and 443 open,
+
+and not much else.
+
+If your environment differs — e.g. you are using rootless Docker, Podman, Swarm, or 
+an upfront reverse proxy — you will need to adapt the provided configuration to your 
+specific installation context.
+This recipe is intended to be generic enough to serve as a reference only.
 
 :::warning
 This recipe does not manage:
 - Database high availability and backup
 - Backup of user files
-  :::
+:::
 
 ## Prerequisites
 
@@ -45,14 +57,14 @@ tar -xvzf production.tar.gz
 cd production
 ```
 :::warning
-If you run your container with a non-root user, you need to set the `DOCKER_USER` environment variable to the user that will run the container.
+If you run your container with a **non-root user**, you need to set the `DOCKER_USER` environment variable to the user that will run the container.
 You can use the `id -u` command to get the user ID of the current user and `id -g` command to get the group ID of the current user and run the following command:
 
 ```bash
 export DOCKER_USER=$(id -u):$(id -g)
 ```
 
-Or you can edit the `.env` file with your favorite editor and set the `DOCKER_USER` variable in it with the result of `$(id -u):$(id -g)`
+Or you can edit the `./.env` file with your favorite editor and set the `DOCKER_USER` variable in it with the result of `$(id -u):$(id -g)`
 :::
 
 ### Configuration
@@ -122,7 +134,7 @@ If you want to try out the demo sample data (the command takes a little while to
 docker compose run --remove-orphans load-demo-data # load some dummy data
 ```
 
-If you want to lock the version of Tenzu, edit the `.env` file and replace "latest" with the image tag
+If you want to lock the version of Tenzu, edit the `./.env` file and replace "latest" with the image tag
 of the version you want to use.
 
 ```bash
