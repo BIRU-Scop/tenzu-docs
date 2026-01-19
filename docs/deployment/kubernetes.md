@@ -30,7 +30,7 @@ For documentation of the values, please refer to the READMEs of the charts:
   <TabItem value="tenzu-back" label="tenzu-back" default>
     <ExternalMarkdown reference="https://github.com/BIRU-Scop/helm-charts/blob/main/charts/tenzu-back/README.md" startLine="## Values" />
   </TabItem>
-  <TabItem value="tenzu-front" label="tenzu-front" default>
+  <TabItem value="tenzu-front" label="tenzu-front">
     <ExternalMarkdown reference="https://github.com/BIRU-Scop/helm-charts/blob/main/charts/tenzu-front/README.md" startLine="## Values" />
  </TabItem>
 </Tabs>
@@ -105,7 +105,7 @@ global:
 ```
 
   </TabItem>
-  <TabItem value="tenzu-front" label="tenzu-front" default>
+  <TabItem value="tenzu-front" label="tenzu-front">
 
 ```yaml tenzu-front/example-values.yml
 ingress:
@@ -140,7 +140,7 @@ the tenzu-back chart in order to configure the variables you need.
 Example configurations:
 
 <Tabs groupId="chart-type">
-  <TabItem value="ldap" label="LDAP" default>
+  <TabItem value="ldap" label="LDAP">
 
 ```yaml tenzu-back/example-values.yml
 env:
@@ -151,7 +151,7 @@ env:
   TENZU_LDAP__USER_FLAGS_BY_GROUP: '{"is_active": "cn=users,ou=groups,dc=mycompany,dc=com"}'
   TENZU_LDAP__USER_SEARCH: '[{"base_dn": "ou=users,dc=mycompany,dc=com", "scope": 2, "filterstr": "(|(mail=%(user)s)(uid=%(user)s))"}]'
   TENZU_LDAP__REQUIRE_GROUP: 'cn=users,ou=groups,dc=mycompany,dc=com'
-  TENZU_LDAP__CONNECTION_OPTIONS: '{"8": 0, "24582": 0, "24591": 0}'
+  TENZU_LDAP__CONNECTION_OPTIONS: '{"8": 0, "24579": "/etc/ssl/certs", "24582": 2, "24591": 0}'
   TENZU_LDAP__START_TLS: "True"
   TENZU_LDAP__BIND_DN: 'cn=readonly,dc=mycompany,dc=com'
   TENZU_LDAP__GROUP_SEARCH: '{"base_dn": "ou=groups,dc=mycompany,dc=com", "scope": 2, "filterstr": "(objectClass=groupOfUniqueNames)"}'

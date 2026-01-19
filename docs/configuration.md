@@ -5,6 +5,9 @@ hide_table_of_contents: true
 
 # Configuration
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 We try to make Tenzu easily configurable for your own use-case.
 
 :::warning
@@ -115,16 +118,8 @@ and [django-auth-ldap](https://django-auth-ldap.readthedocs.io/).
   users.
   If configured, the classic authentication with password will call on your LDAP server instead.
 
-#### django-allauth
-
-| Name                                                             | Type    | Description                                                                                                                                                           | Required | Default |
-|:-----------------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|:--------|
-| `TENZU_ACCOUNT__SOCIALACCOUNT_REQUESTS_TIMEOUT`                  | Number  | Map to `SOCIALACCOUNT_REQUESTS_TIMEOUT` configuration value of [django-allauth](https://docs.allauth.org/en/latest/socialaccount/configuration.html)                  | No       | `5`     |
-| `TENZU_ACCOUNT__SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT` | Boolean | Map to `SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT` configuration value of [django-allauth](https://docs.allauth.org/en/latest/socialaccount/configuration.html) | No       | `True`  |
-| `TENZU_ACCOUNT__SOCIALACCOUNT_PROVIDERS`                         | Object  | Configuration for providers, see [django-allauth docs](https://docs.allauth.org/en/latest/socialaccount/provider_configuration.html)                                  | No       | `{}`    |
-| `TENZU_ACCOUNT__SOCIALAPPS_PROVIDERS`                            | Array   | Social auth apps to add to `INSTALLED_APPS`; any provider that you want to add as a SocialApp must have its corresponding app added here.                             | No       | `[]`    |
-
-#### django-auth-ldap
+<Tabs groupId="chart-type">
+  <TabItem value="ldap" label="LDAP">
 
 The available configuration values are mostly a direct mapping to the
 corresponding [django-auth-ldap](https://django-auth-ldap.readthedocs.io/en/latest/reference.html) configuration value,
@@ -134,7 +129,7 @@ with added validation.
 |:------------------------------------------|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|:---------------------|
 | `TENZU_LDAP__ACTIVATION`                  | `"no","strict","lax"` | Whether to try to authenticate user using the provided LDAP config. If set to `"strict"`, do not use authentication from DB anymore. If set to `"lax"`, fallback to DB auth if LDAP request fails (warning: lax settings do not securely handle duplicate username between LDAP and DB, account will be shared)                                                                                                                                   | No       | `"no"`               |
 | `TENZU_LDAP__SERVER_URI`                  | String                | Map to `AUTH_LDAP_SERVER_URI`                                                                                                                                                                                                                                                                                                                                                                                                                     | No       | `"ldap://localhost"` |
-| `TENZU_LDAP__CONNECTION_OPTIONS`          | Object                | Map to `AUTH_LDAP_CONNECTION_OPTIONS`. Object values should be the number equivalent to an `ldap.OPT_*` option (like `{"8": 0}` for `{ldap.OPT_REFERRALS: ldap.OPT_OFF}`)                                                                                                                                                                                                                                                                         | No       | `{}`                 |
+| `TENZU_LDAP__CONNECTION_OPTIONS`          | Object                | Map to `AUTH_LDAP_CONNECTION_OPTIONS`. Object values should be the number equivalent to an [`ldap.OPT_*` option](https://www.python-ldap.org/en/latest/reference/ldap.html#ldap-options) (like `{"8": 0}` for `{ldap.OPT_REFERRALS: ldap.OPT_OFF}`), see tip section below.                                                                                                                                                                       | No       | `{}`                 |
 | `TENZU_LDAP__GLOBAL_OPTIONS`              | Object                | Map to `AUTH_LDAP_GLOBAL_OPTIONS`. Object values should be the number equivalent to an `ldap.OPT_*` option (like `{"8": 0}` for `{ldap.OPT_REFERRALS: ldap.OPT_OFF}`)                                                                                                                                                                                                                                                                             | No       | `{}`                 |
 | `TENZU_LDAP__BIND_AS_AUTHENTICATING_USER` | Boolean               | Map to `AUTH_LDAP_BIND_AS_AUTHENTICATING_USER`                                                                                                                                                                                                                                                                                                                                                                                                    | No       | `False`              |
 | `TENZU_LDAP__BIND_DN`                     | String                | Map to `AUTH_LDAP_BIND_DN`                                                                                                                                                                                                                                                                                                                                                                                                                        | No       | `""`                 |
@@ -153,12 +148,23 @@ with added validation.
 | `TENZU_LDAP__REFRESH_DN_ON_BIND`          | Boolean               | Map to `AUTH_LDAP_REFRESH_DN_ON_BIND`                                                                                                                                                                                                                                                                                                                                                                                                             | No       | `False`              |
 | `TENZU_LDAP__CACHE_TIMEOUT`               | Number                | Map to `AUTH_LDAP_CACHE_TIMEOUT`                                                                                                                                                                                                                                                                                                                                                                                                                  | No       | `0`                  |
 
+:::tip
+To get the numerical value for a [`ldap.OPT_*` option](https://www.python-ldap.org/en/latest/reference/ldap.html#ldap-options), 
+You can use the following command inside your environment or container running the backend app:
+
+```bash
+# replace OPT_X_TLS_CACERTDIR with any option you want the numeric value of
+python -c "import ldap; print(ldap.OPT_X_TLS_CACERTDIR)"
+```
+
+:::
+
 Here's one possible configuration for an openLDAP:
 
 ```bash
-TENZU_LDAP__ACTIVATION='lax'
+TENZU_LDAP__ACTIVATION='strict'
 TENZU_LDAP__SERVER_URI='ldap://tenzu-ldap'
-TENZU_LDAP__CONNECTION_OPTIONS='{"8": 0}'
+TENZU_LDAP__CONNECTION_OPTIONS='{"8": 0, "24579": "/etc/ssl/certs", "24582": 2, "24591": 0}'
 TENZU_LDAP__BIND_AS_AUTHENTICATING_USER='False'
 TENZU_LDAP__BIND_DN="cn=readonly,dc=tenzu,dc=dev"
 TENZU_LDAP__BIND_PASSWORD="ldap_pwd"
@@ -176,6 +182,20 @@ TENZU_LDAP__USER_FLAGS_BY_GROUP='{
     "is_active": "cn=users,ou=groups,dc=tenzu,dc=dev"
 }'
 ```
+
+  </TabItem>
+  <TabItem value="allauth" label="Others SSO protocols" default>
+
+| Name                                                             | Type    | Description                                                                                                                                                           | Required | Default |
+|:-----------------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|:--------|
+| `TENZU_ACCOUNT__SOCIALACCOUNT_REQUESTS_TIMEOUT`                  | Number  | Map to `SOCIALACCOUNT_REQUESTS_TIMEOUT` configuration value of [django-allauth](https://docs.allauth.org/en/latest/socialaccount/configuration.html)                  | No       | `5`     |
+| `TENZU_ACCOUNT__SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT` | Boolean | Map to `SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT` configuration value of [django-allauth](https://docs.allauth.org/en/latest/socialaccount/configuration.html) | No       | `True`  |
+| `TENZU_ACCOUNT__SOCIALACCOUNT_PROVIDERS`                         | Object  | Configuration for providers, see [django-allauth docs](https://docs.allauth.org/en/latest/socialaccount/provider_configuration.html)                                  | No       | `{}`    |
+| `TENZU_ACCOUNT__SOCIALAPPS_PROVIDERS`                            | Array   | Social auth apps to add to `INSTALLED_APPS`; any provider that you want to add as a SocialApp must have its corresponding app added here.                             | No       | `[]`    |
+
+
+  </TabItem>
+</Tabs>
 
 ## Configure Tenzu Frontend
 
