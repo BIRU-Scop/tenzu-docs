@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.3.4...v2.0.0) (2026-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* switch to new collaboration config
+
+### Features
+
+* switch to new collaboration config ([04ac624](https://gitlab.biru.sh/biru/dev/tenzu/documentation/commit/04ac624f4cda9a28d65e3882c59ba3386bd6b5d1))
+
 ## [1.3.4](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.3.3...v1.3.4) (2026-01-21)
 
 ## [1.3.3](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v1.3.2...v1.3.3) (2026-01-19)
