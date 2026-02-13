@@ -4,10 +4,17 @@ sidebar_position: 7
 
 # Changelog
 
-## v2.0.0 - 2026-30-01
+## v2.1.0 - 2026-02-13
+
+- Enforce permissions backend-side when using the collaboration websocket
+- SBOM generation
+- Major dependencies upgrade and clean up of some leftover legacy system
+
+## v2.0.0 - 2026-01-30
 
 - **Live collaboration on description of stories**
 - Logs basic configuration
+- More granulated cache rules to prevent error retrieving expired files
 
 :::danger
 ### Breaking changes
@@ -37,20 +44,20 @@ The following environment variable have been renamed:
 - "Mark all as read" for notifications
 - Start using Angular Signal forms
 
-## v1.0.1 - 2025-04-11
+## v1.0.1 - 2025-11-04
 
 - **Comments**
 - Cmd/Ctrl+Enter to trigger save
 - Language choice on signup
 - Retry policy on network requests
 
-## v1.0.0 - 2025-30-09
+## v1.0.0 - 2025-09-30
 
 First production-ready, stable release
 
 - Final tests and polish
 
-## v0.0.2/v0.1.1/v0.1.2 - 2025-23-09
+## v0.0.2/v0.1.1/v0.1.2 - 2025-09-23
 
 Last alpha release
 
