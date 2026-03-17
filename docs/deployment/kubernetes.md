@@ -179,6 +179,7 @@ secretEnv:
             "fetch_userinfo": True,
             "oauth_pkce_enabled": True,
             "server_url": "https://my.server.example.com",
+          }
         }
       ]
     }
