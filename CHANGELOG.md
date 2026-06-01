@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [3.0.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v2.1.0...v3.0.0) (2026-06-01)
+
 ## [2.1.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v2.0.1...v2.1.0) (2026-03-17)
 
 
