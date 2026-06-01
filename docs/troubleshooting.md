@@ -18,6 +18,6 @@ To see the error details, open your browser's console; the error will be display
 
 ## Specific
 
-See dedicated section for issues that are dependant on the method of installation:
+See dedicated section for issues that are dependent on the method of installation:
 
 1. **[docker-compose](deployment/docker-compose.md#troubleshooting)**

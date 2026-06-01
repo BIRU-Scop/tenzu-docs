@@ -4,6 +4,17 @@ sidebar_position: 7
 
 # Changelog
 
+## v3.0.0 - 2026-06-04
+
+- Project logo feature
+- New design system for improved accessibility in terms of spacing, delineation and colours contrast
+- Importation from Taiga: supports project properties, project roles, KANBANs stories, comments, attachments, statuses and swimlanes
+
+:::danger
+### Breaking changes
+The response format for all HTTP errors now follows the documented OpenAPI specification.
+:::
+
 ## v2.1.0 - 2026-02-13
 
 - Enforce permissions backend-side when using the collaboration websocket
