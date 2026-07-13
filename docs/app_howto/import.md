@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 0
 ---
 
 # Importation
@@ -27,9 +27,16 @@ For now, Taiga importation will migrate the following:
 - Stories taken from the KANBAN
   - Attachments
   - Comments
-  - Assignments will be created only for the current user; other users present in the Taiga export 
-    are not supported yet and will not be added to the Tenzu project (coming soon).
-    Users will be matched based on their email addresses
+  - Assignments
+    
+#### Users
+
+The user doing the importation will have to possibility to automatically invite all original 
+members of the imported Taiga project. They will be able to currate that list beforehand and remove some users
+or assign them to a different role than the one they originally had. Once one such user accept their invitation 
+to the new Tenzu project, they will be reidentified on the comments and stories (including as assignees) they belonged to.
+
+Users will be matched based on their email addresses.
 
 :::warning
 Please note that the user that launches the importation will become Owner of the project in Tenzu,

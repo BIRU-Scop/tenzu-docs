@@ -152,6 +152,20 @@ const config: Config = {
       additionalLanguages: ['bash', 'docker'],
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/import',
+            to: '/app_howto/import',
+          },
+        ],
+      },
+    ],
+  ],
 };
 
 export default config;

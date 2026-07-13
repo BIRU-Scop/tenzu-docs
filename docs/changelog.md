@@ -1,8 +1,14 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Changelog
+
+## v3.1.0 - 2026-07-13
+
+- New feed API: send news to your users directly from a popup in Tenzu! New release will be shown that way
+- Users importation from Taiga: when you import a project from Taiga, you can now automatically invite back any previous members
+
 
 ## v3.0.0 - 2026-06-04
 
