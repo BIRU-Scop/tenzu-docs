@@ -80,8 +80,8 @@ import styles from '/src/css/configuration.module.css';
 | `TENZU_ACCOUNT__RESET_PASSWORD_TOKEN_LIFETIME`          | Timedelta                                                                                 | Validity of the token used to reset a password                                                                                                                                                                   | No       | 2 hours                                               |
 
 :::tip
-Please note that emails are by default stored in files. It's recommended to set `TENZU_EMAIL__EMAIL_BACKEND` to
-`django.core.mail.backends.smtp.EmailBackend` in order to use a real SMTP server.
+By default, emails are stored in files instead of being sent.
+To send them, configure an SMTP server as described in [Email delivery](email.md).
 :::
 
 For an exhaustive and up-to-date list of variables, you can directly check
