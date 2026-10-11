@@ -82,8 +82,7 @@ redis:
   # Load redis credentials from a raw value
   password: "redisPassword"
 env:
-  - name: TENZU_USER_EMAIL_ALLOWED_DOMAINS
-    value: '["mycompany.com","mycompany.org"]'
+  TENZU_ACCOUNT__USER_EMAIL_ALLOWED_DOMAINS: '["mycompany.com","mycompany.org"]'
 email:
   defaultFrom: "from@mycompany.com"
   host: "ssl0.ovh.net"
@@ -95,7 +94,7 @@ sentry:
   dsn: "backend-dsn"
   environment: "test"
 secretKey: "secret-key"
-tokensSigningKey: "jwt-secret-key"
+tokenSigningKey: "jwt-secret-key"
 
 global:
   frontendUrl:
