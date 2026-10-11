@@ -154,6 +154,16 @@ docker compose --profile start up --remove-orphans --wait -d
 
 This command is used to run Tenzu in a background task. If there is a crash, they will restart automatically.
 
+### Verify the installation
+
+Check that Tenzu works before you invite users. Replace `example.domain.name` with your domain.
+
+1. Open `https://example.domain.name` and check that the page loads over HTTPS.
+2. Create an account at `https://example.domain.name/signup` with an address you can read.
+   Open the link in the verification email and sign in.
+
+If the email doesn't arrive, see [Email delivery](../email.md#check-that-emails-arrive).
+
 :::note
 When everything run as you want it to, delete the `initial-configuration` directory to prevent using it again by mistake.
 :::

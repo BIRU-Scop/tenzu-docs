@@ -16,11 +16,11 @@ Set these variables in the backend environment. With Docker Compose, they go in 
 
 ```bash
 TENZU_EMAIL__EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-TENZU_EMAIL__DEFAULT_FROM_EMAIL='tenzu@example.com'
-TENZU_EMAIL__EMAIL_HOST='smtp.example.com'
+TENZU_EMAIL__DEFAULT_FROM_EMAIL='tenzu@example.domain.name'
+TENZU_EMAIL__EMAIL_HOST='smtp.example.domain.name'
 TENZU_EMAIL__EMAIL_PORT='587'
-TENZU_EMAIL__EMAIL_HOST_USER='tenzu@example.com'
-TENZU_EMAIL__EMAIL_HOST_PASSWORD='your-smtp-password'
+TENZU_EMAIL__EMAIL_HOST_USER='smtp-user'
+TENZU_EMAIL__EMAIL_HOST_PASSWORD='a-strong-smtp-password'
 TENZU_EMAIL__EMAIL_USE_TLS='true'
 TENZU_EMAIL__EMAIL_USE_SSL='false'
 ```
@@ -45,9 +45,9 @@ All email variables are listed in the [configuration reference](configuration.md
 ## Check that emails arrive
 
 1. Recreate the containers so the backend and the worker load the new values.
-   With Docker Compose, run `docker compose --profile start up -d`. `docker compose restart` does not load them.
+   With Docker Compose, run `docker compose --profile start up --remove-orphans --wait -d`. `docker compose restart` does not load them.
    With Kubernetes, run `helm upgrade` with the changed values.
-2. Open `https://<your-domain>/signup` and create an account with an address you can read.
+2. Open `https://example.domain.name/signup`, using your domain, and create an account with an address you can read.
 3. Wait for the verification email, open its link, and sign in.
 
 The worker sends the emails, not the API. If the SMTP server returns an error, the worker tries again up to 4 times. If no email arrives, check the worker logs:
