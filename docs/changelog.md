@@ -4,6 +4,13 @@ sidebar_position: 8
 
 # Changelog
 
+## v3.2.0 - 2026-10-19
+
+- Tag your stories: you can now configure tags for your project and use them on your stories!
+- Import your tags from Taiga: if you previously imported a Taiga project, if you had tagged stories, they will become tagged again!
+- Big file upload: when you import a project from Taiga, it will work even with those huge files
+- Fixed a bug where users that had registered on taiga using some uppercase characters in their email would not be assigned back to their data after a Tenzu importation
+
 ## v3.1.0 - 2026-07-13
 
 - New feed API: send news to your users directly from a popup in Tenzu! New release will be shown that way

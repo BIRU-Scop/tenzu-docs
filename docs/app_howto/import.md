@@ -28,11 +28,12 @@ For now, Taiga importation will migrate the following:
   - Attachments
   - Comments
   - Assignments
+  - Tags
     
 #### Users
 
 The user doing the importation will have to possibility to automatically invite all original 
-members of the imported Taiga project. They will be able to currate that list beforehand and remove some users
+members of the imported Taiga project. They will be able to curate that list beforehand and remove some users
 or assign them to a different role than the one they originally had. Once one such user accept their invitation 
 to the new Tenzu project, they will be reidentified on the comments and stories (including as assignees) they belonged to.
 

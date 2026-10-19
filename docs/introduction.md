@@ -27,7 +27,7 @@ At the very least you'll need:
 - A container engine such as Docker or containerd.
 
 Then, to deploy Tenzu, you'll need to ensure that your environment meets the following conditions:
-- A PostgreSQL database (minimum required version: 14).
+- A PostgreSQL database (minimum required version: 15).
 - A Redis instance (minimum required version: 7.1).
 - A reverse proxy (caddy, traefik, nginx, apache, ...) responsible for proxying API/Websocket requests to the backend and Managing SSL certificates
 - A SMTP server to deliver transactional mails
