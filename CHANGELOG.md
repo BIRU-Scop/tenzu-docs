@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [commit
 
 ## [3.2.1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v3.2.0...v3.2.1) (2026-11-09)
 
+## [3.2.1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v3.2.0...v3.2.1) (2026-11-09)
+
 ## [3.2.0](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v3.1.1...v3.2.0) (2026-10-19)
 
 ## [3.1.1](https://gitlab.biru.sh/biru/dev/tenzu/documentation/compare/v3.1.0...v3.1.1) (2026-07-13)
