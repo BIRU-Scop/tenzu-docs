@@ -35,14 +35,16 @@ For documentation of the values, please refer to the READMEs of the charts:
  </TabItem>
 </Tabs>
 
-To deploy Tenzu, at a minimum, you'll need to provide the following values:
-- `tenzu-back.email`
-- `tenzu-back.secretKey`
-- `tenzu-back.tokenSigningKey`
+To deploy Tenzu, at a minimum, you'll need to provide the following values in the `tenzu-back` values file:
+- `email`
+- `secretKey`
+- `tokenSigningKey`
 - `global.backendUrl.host`
 - `global.frontendUrl.host`
-- `tenzu-back.redis`: provide `host` as well as the password either through a secret or raw string value
-- `tenzu-back.postgresql`: provide `host` as well as the password, username and database name either through a secret or raw string values
+- `redis`: provide `host` as well as the password either through a secret or raw string value
+- `postgresql`: provide `host` as well as the password, username and database name either through a secret or raw string values
+
+In the `tenzu-front` values file, you'll need to provide `global.backendUrl.host`.
 
 :::tip
 You can use [djecrety](https://djecrety.ir/) to generate a secret key.
@@ -50,7 +52,7 @@ You can use [djecrety](https://djecrety.ir/) to generate a secret key.
 
 You might also need to setup an `Ingress`, each chart provides an `ingress` value for that.
 
-You also have a `sentry` value to configure connexion to a sentry/glitchtip error tracker.
+You also have a `sentry` value to configure the connection to a Sentry or GlitchTip error tracker.
 
 ## Example files
 
@@ -60,8 +62,8 @@ You also have a `sentry` value to configure connexion to a sentry/glitchtip erro
 ```yaml tenzu-back/example-values.yml
 ingress:
   enabled: true
-  annotations: 
-    kubernetes.io/ingress.class: "nginx"
+  className: "nginx"
+  annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production-dns01"
   hosts:
     - "tenzu-api.mycompany.com"
@@ -82,11 +84,11 @@ redis:
   # Load redis credentials from a raw value
   password: "redisPassword"
 env:
-  - name: TENZU_USER_EMAIL_ALLOWED_DOMAINS
-    value: '["mycompany.com","mycompany.org"]'
+  TENZU_ACCOUNT__USER_EMAIL_ALLOWED_DOMAINS: '["mycompany.com","mycompany.org"]'
 email:
   defaultFrom: "from@mycompany.com"
   host: "ssl0.ovh.net"
+  port: 587
   user: "my-user@mycompany.com"
   password: "verySecurePassword"
   supportEmail: "contact@mycompany.com"
@@ -95,7 +97,7 @@ sentry:
   dsn: "backend-dsn"
   environment: "test"
 secretKey: "secret-key"
-tokensSigningKey: "jwt-secret-key"
+tokenSigningKey: "jwt-secret-key"
 
 global:
   frontendUrl:
@@ -110,8 +112,8 @@ global:
 ```yaml tenzu-front/example-values.yml
 ingress:
   enabled: true
-  annotations: 
-    kubernetes.io/ingress.class: "nginx"
+  className: "nginx"
+  annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production-dns01"
   hosts:
     - "tenzu.mycompany.com"
