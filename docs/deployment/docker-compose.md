@@ -34,6 +34,7 @@ You'll need the following environment.
 - Docker (version >= 24)
 - Ports 80 and 443 to be opened
 - A domain name pointing to the server IP: example.domain.name
+- An SMTP server and an address Tenzu is allowed to send emails from
 
 :::info
 The port 80 is used to renew the HTTPS certificate.
@@ -78,6 +79,9 @@ Keep the values in between single quotes if you don't want any problem with shel
 :::tip
 You can use [djecrety](https://djecrety.ir/) to generate a secret key.
 :::
+
+The `TENZU_EMAIL__` values are the settings of your SMTP server. Users can't finish signing up without them.
+See [Email delivery](../email.md) to choose the port and the TLS or SSL setting.
 
 import CodeBlock from '@theme/CodeBlock';
 import GenerateEnv from '!!raw-loader!../../examples/production/initial-configurations/generate.env';
@@ -149,6 +153,16 @@ docker compose --profile start up --remove-orphans --wait -d
 ```
 
 This command is used to run Tenzu in a background task. If there is a crash, they will restart automatically.
+
+### Verify the installation
+
+Check that Tenzu works before you invite users. Replace `example.domain.name` with your domain.
+
+1. Open `https://example.domain.name` and check that the page loads over HTTPS.
+2. Create an account at `https://example.domain.name/signup` with an address you can read.
+   Open the link in the verification email and sign in.
+
+If the email doesn't arrive, see [Email delivery](../email.md#check-that-emails-arrive).
 
 :::note
 When everything run as you want it to, delete the `initial-configuration` directory to prevent using it again by mistake.
